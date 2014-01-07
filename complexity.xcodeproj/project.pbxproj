@@ -24,7 +24,7 @@
 		74FBB7EC185417B900E275A5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 74FBB7EA185417B900E275A5 /* InfoPlist.strings */; };
 		74FBB7EE185417B900E275A5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FBB7ED185417B900E275A5 /* main.m */; };
 		74FBB7F2185417B900E275A5 /* CCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FBB7F1185417B900E275A5 /* CCAppDelegate.m */; };
-		74FBB7F5185417B900E275A5 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74FBB7F3185417B900E275A5 /* Main_iPhone.storyboard */; };
+		74FBB7F5185417B900E275A5 /* Main_iPhone3point5.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74FBB7F3185417B900E275A5 /* Main_iPhone3point5.storyboard */; };
 		74FBB7F8185417B900E275A5 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74FBB7F6185417B900E275A5 /* Main_iPad.storyboard */; };
 		74FBB7FB185417B900E275A5 /* CCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FBB7FA185417B900E275A5 /* CCViewController.m */; };
 		74FBB7FD185417B900E275A5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74FBB7FC185417B900E275A5 /* Images.xcassets */; };
@@ -71,7 +71,7 @@
 		74FBB7EF185417B900E275A5 /* complexity-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "complexity-Prefix.pch"; sourceTree = "<group>"; };
 		74FBB7F0185417B900E275A5 /* CCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCAppDelegate.h; sourceTree = "<group>"; };
 		74FBB7F1185417B900E275A5 /* CCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCAppDelegate.m; sourceTree = "<group>"; };
-		74FBB7F4185417B900E275A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		74FBB7F4185417B900E275A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone3point5.storyboard; sourceTree = "<group>"; };
 		74FBB7F7185417B900E275A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		74FBB7F9185417B900E275A5 /* CCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCViewController.h; sourceTree = "<group>"; };
 		74FBB7FA185417B900E275A5 /* CCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCViewController.m; sourceTree = "<group>"; };
@@ -168,7 +168,7 @@
 			children = (
 				74FBB7F0185417B900E275A5 /* CCAppDelegate.h */,
 				74FBB7F1185417B900E275A5 /* CCAppDelegate.m */,
-				74FBB7F3185417B900E275A5 /* Main_iPhone.storyboard */,
+				74FBB7F3185417B900E275A5 /* Main_iPhone3point5.storyboard */,
 				74FBB7F6185417B900E275A5 /* Main_iPad.storyboard */,
 				74FBB7F9185417B900E275A5 /* CCViewController.h */,
 				74FBB7FA185417B900E275A5 /* CCViewController.m */,
@@ -308,7 +308,7 @@
 				74781659186E924F009CE8B9 /* qs.html in Resources */,
 				7478165B186E9268009CE8B9 /* bubble.html in Resources */,
 				74781652186E844E009CE8B9 /* cambodia.png in Resources */,
-				74FBB7F5185417B900E275A5 /* Main_iPhone.storyboard in Resources */,
+				74FBB7F5185417B900E275A5 /* Main_iPhone3point5.storyboard in Resources */,
 				74ABFF3C186E2CFC006BBC6D /* about.html in Resources */,
 				74FBB7EC185417B900E275A5 /* InfoPlist.strings in Resources */,
 			);
@@ -366,12 +366,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		74FBB7F3185417B900E275A5 /* Main_iPhone.storyboard */ = {
+		74FBB7F3185417B900E275A5 /* Main_iPhone3point5.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				74FBB7F4185417B900E275A5 /* Base */,
 			);
-			name = Main_iPhone.storyboard;
+			name = Main_iPhone3point5.storyboard;
 			sourceTree = "<group>";
 		};
 		74FBB7F6185417B900E275A5 /* Main_iPad.storyboard */ = {
