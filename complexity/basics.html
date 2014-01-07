@@ -1,0 +1,149 @@
+<h1>Computational Complexity Basics</h1>
+
+When writing a program, you may have a number of different possible
+algorithms to complete any given task.  <i>Need to sort some items?</i>  At
+least a dozen ways to do that.  <i>Looking for the shortest route
+from Los Angeles to New York?</i>  A couple of different ways to figure
+that out too.  This app is designed to give an introduction to the mathematics
+used to compare different algorithms (and to provide examples of why it's
+important to pay attention in an algorithms course).
+<p>
+Computational complexity is the mathematics used to compare different
+algorithmic approaches.  The roots of this come from great work done
+by <a href="http://www.ams.org/journals/tran/1965-117-00/S0002-9947-1965-0170805-7/">Hartmanis and Stearns,
+    in their paper "On the Computational Complexity of Algorithms."</a>
+For a modern explanation, you can look at <a href="http://en.wikipedia.org/wiki/The_Art_of_Computer_Programming">Prof. Don Knuth's "The Art of Computer Programming"</a>,
+or <a href="http://en.wikipedia.org/wiki/Introduction_to_Algorithms">"Introduction to Algorithms" by Cormen, Leiserson, Rivest, and Stein</a>.
+And if you enjoy reading about algorithms, definitely check out <a href="http://en.wikipedia.org/wiki/Computers_and_Intractability:_A_Guide_to_the_Theory_of_NP-Completeness">Garey And Johnson's "Computers and Intractability"</a> (sometimes known as
+the little black book of misery).
+
+<p>
+Most definitions are based on the CLRS text.  Some algorithm examples are adapted
+from CLRS (so that array indexes start at 0, instead of 1.  <i>Really, CLRS?  Indexing starting at 1?  What are you using, Fortran???</i>).
+Where possible, there will be links to more detailed descriptions.
+
+<h2>Counting the Steps</h2>
+
+Ok, so let's start.  Suppose you wish to add up a series of numbers, and you've got
+them stored in a big array called <i>data</i>.  You might use a little bit of
+code that looks like this.
+
+<code>
+<pre>
+    int total = 0;
+    for (int i = 1; i <= n; i = i + 1)
+        total = total + data[i];
+</pre>
+</code>
+
+Pretty simple, right?  A question that one might ask is <i>how long will it take
+my computer to complete this task?</i>  It's kind of a trick question;
+we don't know how long it will take to do a single addition operation (or
+really, anything about the computer that it's going to run on).
+<p>
+Thanks to the mathematics of computational complexity, though, we have a simple
+way of capturing an interesting property about the run time.  Suppose we
+pick a constant <i>c</i>, which is how long it takes to do the addition.  We
+have <i>n</i> numbers.  With the right <i>c</i>, we can get a good run time
+estimate of <i>cn</i>.  If we double the value of <i>n</i>, the run time will
+roughly double.  Increase by a factor of 100, and it'll take about 100 times longer.
+<p>
+The really useful aspect of this constant <i>c</i> is that it eliminates the need
+to worry about how long an addition takes.  We know that our algorithm run times
+will be roughly linear with the problem size.  We can think about the algorithm
+without thinking about the machine.
+<p>
+
+<h2>Algorithmic Fun</h2>
+
+Ok, now let's change the problem a little bit.  Suppose we want to add up
+the integers from 1 to <i>n</i>.  One way to do this would
+be to modify the code from above.
+
+<code>
+    <pre>
+        int total = 0;
+        for (int i = 1; i <= n; i = i + 1)
+            total = total + i;
+            </pre>
+</code>
+
+The constant <i>c</i> might be different, but the run time will still change
+linearly with the problem size.
+<p>
+If you know a little bit of mathematics, however, you probably know an easier
+way to get to the result.  Instead, you might do the following.
+
+<code>
+<pre>
+    int total = (n * (n + 1))/2;
+</pre>
+</code>
+
+This is a different <i>algorithm</i>.  Both the loop, and the closed form, will
+get the right answer.  The second variation requires constant time; just a multiply,
+an addition, and a divide by 2, and you're done.
+<p>
+Suppose we graph the run times of the two different methods, with the problem
+size along the X axis, and the run time along the Y.  The loop will have a straight
+line sloping up to the right; as the problems get larger, the run time increases.
+The closed form version will have a horizontal line.
+<p>
+A key insight from Hartmanis and Stearns is that <i>no matter what the constant factors
+are, as the problem sizes increase, the algorithm with the lowest computational
+complexity will turn out to be the fastest.</i>  Run the loop on a very fast computer,
+and the closed form on a slow one -- the slow computer will win, once the problem
+becomes large enough.  This is an important mathematical truth; don't overlook it!
+<p>
+For small problems, it's possible for a higher computational complexity algorithm
+to be faster than a slower one.  For example, suppose it takes one second to perform
+an addition, and sixty seconds for multiplication and division.  If we only have to
+add up the numbers from 1 to 10, it would take 10 seconds with the loop, but 121
+seconds with the closed form approach.  Increate the value of <i>n</i>, however, and the
+tables are turned.  When <n> is 121, the two approaches take the same amount of time;
+this "crossover point" is referred to as n0.  After n0, the closed form wins (and the
+ratio that it wins by keeps increasing as <i>n</i> gets larger).
+
+<h2>Big-O definitions</h2>
+
+Over the years, the math of computational complexity has been boiled down to a
+few definitions that every computer scientist should know.  The Big-O complexity
+is the upper bound on the number of steps an algorithm takes; it's the worst case
+behavior, and is usually what one considers when deciding which approach to take.
+<p>
+For the two loops above, both algorithms are O(n).  They might have different
+constant factors for <i>c</i>, but both have roughly linear run time increases
+with the size of the problem.  The closed form for the summation of 1 to n is O(1).
+It takes a constant amount of time, no matter what the value of n is.
+<p>
+There might be a tempation to focus on the clock rate of the computer, the
+size and organization of the cache, the programming language, and any one of a dozen other things
+that could impact the actual run time.  While these things do matter, they're not
+as critical as the underlying complexity of the algorithms.  As n gets larger, the
+O(1) algorithm beats the O(n) algorithm; it doesn't matter what machinery you run on.
+<p>
+In addition to the Big-O upper bound, there's also an Omega function
+lower bound.  This is the best case performance
+of an algorithm.
+<p>
+When the Big-O and Omega functions are the same, the algorithm is Theta of that function.
+<p>
+If you're writing programs, and you don't know the Big-O of the algorithms you're using,
+please stop writing programs.  And if you're implementing an algorithm that has a
+higher Big-O complexity than the best known approach, please stop.  Implement the better
+algorithm.  Yes, we know, the dumb algorithm is easier to code up.  That's not a
+valid excuse.  Use the better algorithm.
+
+<h2>About this App</h2>
+
+The goal of this app is to illustrate the principles of computational complexity.
+There's one part of the app where you can adjust problem sizes, <i>c</i> constant
+factors, and see the impact on run times.
+<p>
+Once you've got an idea of how the curves behave, you can test things out.
+This version of the app has two classic sorting algorithms implemented: bubble
+sort, and quick sort.  Bubble sort is O(n), while quick sort is O(n log n).
+You can adjust the size of a randomly generated set of integers, and sort them
+with either algorithm.  If you think that Big-O complexity is a bunch of ivory
+tower nonsense that doesn't apply to the real world, hopefully a few minutes
+with the sorting examples will change your mind.

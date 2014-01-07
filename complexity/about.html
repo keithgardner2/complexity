@@ -1,0 +1,67 @@
+<h1>So, what's this all about?</h1>
+Hi there.  You're probably wondering why someone wrote an app that didn't involve
+throwing birds at pigs or crushing candy, so let me explain.  I teach computer science at <a href="http://www.cs.binghamton.edu">SUNY Binghamton</a>,
+and normally cover courses on algorithms at the grad and undergrad levels.
+<p>
+Over the past few years, I've started using an iPad in class, as a way to
+project slides and PDFs.  It's also been handy as a replacement for writing on a white
+board (particularly when all the white board markers are dried out).  Sometimes I
+run things on a remote server using SSH.
+I wanted to have a way to demonstrate algorithms, and manipulate some graphs,
+so the sensible thing seemed to be to put all of that stuff into an app.  Having
+it all on the iPad saves the hassle of jumping back and forth between projecting
+the screen, and something out of a book, or wrangling with adapters to
+connect to a laptop.  In my spare time, I play around with writing music apps,
+so it wasn't a big deal to knock out an app for computational complexity.
+<p>
+In this app, there's a simple graph illustrating Big-O complexity curves
+for log n, n, n log n, and n squared, with some sliders to adjust the
+constant c, and the problem size.  The take-away from this should be that
+the Big-O complexity of an algorithm does in fact matter -- and that as
+the problem sizes increase, the run time differences become vast.
+<p>
+All this Big-O stuff is great on paper, but to really drive the point
+home, the app also sorts numbers with different algorithms.
+A large set of numbers are generated
+at random (no downloads, yay!), and then can sort them using quicksort
+or bubble sort.
+<p>
+For small problem sizes, the choice of algorithm isn't that big of a deal --
+and too often, students will only test things on data sets they type
+in by hand, which means that the data sets are small.
+<p>
+Where things get interesting is on the bigger problems.  Run the sorting
+algorithms on problems with a hundred elements, and quicksort and
+bubble sort will complete in the blink of an eye.  Run the problem size
+up to thousands or millions, and the fun starts.  Quicksort is still
+fast.  Bubble sort, not so much.
+<p>
+It's tempting to gloss over the differences between algorithms,
+and it's certainly easier to implement the "trivial" approaches, rather
+than algorithms that require tricky data structures, recursion, and all
+kinds of other scary stuff.  But...  it's worth it.  <b>Big-O complexity
+    matters.  It matters a lot.  You can pretty much forget about
+cache sizes, clock rates, and even parallelism, if you screw up
+the Big-O complexity of your algorithm implementations.</b>
+<p>
+Anyway, that's what the app is about.  An easy way to integrate some
+Big-O complexity graphs, and a few algorithm implementations, into
+a computer science course.  I've put the app up in the store so that
+students (or anyone else, for that matter) can grab it.  There will
+probably be a few updates, where I'll be adding
+more algorithms, some write-ups, and whatever else comes to mind.
+There might be an embedded mini-game of Angry Bearcats in the future.
+We'll see.
+<p>
+If you've got questions or comments, <a href="mailto:pmadden@acm.org">drop me an email</a>.  If you wind up
+using the app as part of a computer science course, that would be fun
+for me to know.  You can also say <a href="https://itunes.apple.com/us/app/computational-complexity/id788314470?ls=1&mt=8">something nice in the app store if you
+like.</a>  I won't send you a hexidecimal dollar, but if you find a bug,
+I'd like to hear about that too!
+<p>
+Have fun with the app, and I hope you find it useful!
+<p>
+<a href="http://www.cs.binghamton.edu/~pmadden">Patrick H. Madden/SUNY Binghamton CSD</a>
+
+
+

@@ -1,0 +1,18 @@
+convert complex-icon-1024.png -resize 50% complex-icon-512.png
+convert complex-icon-1024.png -resize 2.83% complex-icon-29.png
+convert complex-icon-1024.png -resize 5.66% complex-icon-29-2.png
+convert complex-icon-1024.png -resize 3.9% complex-icon-40.png
+convert complex-icon-1024.png -resize 7.8% complex-icon-40-2.png
+convert complex-icon-1024.png -resize 4.88% complex-icon-50.png
+convert complex-icon-1024.png -resize 9.76% complex-icon-50-2.png
+convert complex-icon-1024.png -resize 5.56% complex-icon-57.png
+convert complex-icon-1024.png -resize 11.12% complex-icon-57-2.png
+convert complex-icon-1024.png -resize 5.85% complex-icon-60.png
+convert complex-icon-1024.png -resize 11.7% complex-icon-60-2.png
+convert complex-icon-1024.png -resize 7.03% complex-icon-72.png
+convert complex-icon-1024.png -resize 14.06% complex-icon-72-2.png
+convert complex-icon-1024.png -resize 7.42% complex-icon-76.png
+convert complex-icon-1024.png -resize 14.84% complex-icon-76-2.png
+
+convert complex-splash.png -resize 50% complex-splash-nr.png
+

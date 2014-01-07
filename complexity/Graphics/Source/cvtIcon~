@@ -1,0 +1,19 @@
+convert Blue-MIDI-Icon-1024.png -resize 50% Blue-MIDI-Icon-512.png
+convert Blue-MIDI-Icon-1024.png -resize 2.83% Blue-MIDI-Icon-29.png
+convert Blue-MIDI-Icon-1024.png -resize 5.66% Blue-MIDI-Icon-29-2.png
+convert Blue-MIDI-Icon-1024.png -resize 3.9% Blue-MIDI-Icon-40.png
+convert Blue-MIDI-Icon-1024.png -resize 7.8% Blue-MIDI-Icon-40-2.png
+convert Blue-MIDI-Icon-1024.png -resize 4.88% Blue-MIDI-Icon-50.png
+convert Blue-MIDI-Icon-1024.png -resize 9.76% Blue-MIDI-Icon-50-2.png
+convert Blue-MIDI-Icon-1024.png -resize 5.56% Blue-MIDI-Icon-57.png
+convert Blue-MIDI-Icon-1024.png -resize 11.12% Blue-MIDI-Icon-57-2.png
+convert Blue-MIDI-Icon-1024.png -resize 5.85% Blue-MIDI-Icon-60.png
+convert Blue-MIDI-Icon-1024.png -resize 11.7% Blue-MIDI-Icon-60-2.png
+convert Blue-MIDI-Icon-1024.png -resize 7.03% Blue-MIDI-Icon-72.png
+convert Blue-MIDI-Icon-1024.png -resize 14.06% Blue-MIDI-Icon-72-2.png
+convert Blue-MIDI-Icon-1024.png -resize 7.42% Blue-MIDI-Icon-76.png
+convert Blue-MIDI-Icon-1024.png -resize 14.84% Blue-MIDI-Icon-76-2.png
+
+convert blue-midi-ipad-splash-2.png -resize 50% blue-midi-ipad-splash.png
+convert blue-midi-ipad-splash-2.png -rotate 90 blue-midi-ipad-splash-2-p.png
+convert blue-midi-ipad-splash.png -rotate 90 blue-midi-ipad-splash-p.png
