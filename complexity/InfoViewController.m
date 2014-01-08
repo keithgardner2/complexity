@@ -38,11 +38,11 @@
     if (fileToLoad != nil)
     {
         [wv loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:fileToLoad ofType:@"html"] isDirectory:NO]]];
-        // NSLog(@"Loading file %@", fileToLoad);
+        NSLog(@"Loading file %@", fileToLoad);
     }
     else
     {
-        // NSLog(@"Loading about");
+        NSLog(@"Loading about");
         [wv loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"about" ofType:@"html"] isDirectory:NO]]];
     }
 
