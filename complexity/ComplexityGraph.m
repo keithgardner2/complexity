@@ -100,8 +100,12 @@ float complexityFunction(int f, float c, float k, float n)
     }
     
     if (LDBG) NSLog(@"Maxv = %f", maxv);
-
-    CGContextSelectFont(context, "Helvetica", 20, kCGEncodingMacRoman);
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){//For iPhone, make font size smaller
+        CGContextSelectFont(context, "Helvetica", 11, kCGEncodingMacRoman);
+    }
+    else{
+        CGContextSelectFont(context, "Helvetica", 20, kCGEncodingMacRoman);
+    }
     CGContextSetTextDrawingMode(context, kCGTextFill);
     char tmp[100];
     
@@ -132,7 +136,12 @@ float complexityFunction(int f, float c, float k, float n)
                 sprintf(tmp, "f(n) = %5.1f*n^2      %5.1f", c[3], v);
                 break;
         }
-        CGContextShowTextAtPoint(context, 10, bounds.size.height - (22*(f+1)), tmp, strlen(tmp));
+        if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){//For iPhone, font is smaller, so spacing should be less
+            CGContextShowTextAtPoint(context, 10, bounds.size.height - (12*(f+1)), tmp, strlen(tmp));
+        }
+        else{
+            CGContextShowTextAtPoint(context, 10, bounds.size.height - (22*(f+1)), tmp, strlen(tmp));
+        }
         
         for (i = 1; i < bounds.size.width; ++i)
         {

@@ -21,10 +21,10 @@
         
         CGSize iOSDeviceScreenSize = [[UIScreen mainScreen] bounds].size;
         
-        NSLog(@"height:");
-        NSLog(@"%f", iOSDeviceScreenSize.height);
-        NSLog(@"width:");
-        NSLog(@"%f", iOSDeviceScreenSize.width);
+//        NSLog(@"height:");
+//        NSLog(@"%f", iOSDeviceScreenSize.height);
+//        NSLog(@"width:");
+//        NSLog(@"%f", iOSDeviceScreenSize.width);
         
         if(iOSDeviceScreenSize.height  == 568){
             NSLog(@"Loading 4 inch storyboard");

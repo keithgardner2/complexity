@@ -35,6 +35,7 @@
     // NSString *dir = [NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES) lastObject];
     // NSString *path = [NSString stringWithFormat:@"%@/about.html"];
     // [wv loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://optimal.cs.binghamton.edu"]]];
+    NSLog(@"info view has appeared");
     if (fileToLoad != nil)
     {
         [wv loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:fileToLoad ofType:@"html"] isDirectory:NO]]];

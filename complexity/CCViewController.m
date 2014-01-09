@@ -31,7 +31,8 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if (LDBG) NSLog(@"Segue named %@ %p", segue.identifier, segue.destinationViewController);
+    //if (LDBG)
+    NSLog(@"Segue named %@ %p", segue.identifier, segue.destinationViewController);
     
     InfoViewController *vc = [segue destinationViewController];
     if ([segue.identifier isEqualToString:@"qs"])

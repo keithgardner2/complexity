@@ -107,7 +107,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="n7E-Fj-lRF" kind="modal" id="ca3-2Z-vz8"/>
+                                            <segue destination="n7E-Fj-lRF" kind="modal" identifier="basics" id="ca3-2Z-vz8"/>
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="definitions.png" translatesAutoresizingMaskIntoConstraints="NO" id="P7V-Gu-6Mk">
@@ -182,85 +182,85 @@
                                         </connections>
                                     </slider>
                                     <slider opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="99a-lW-oH7">
-                                        <rect key="frame" x="350" y="244" width="89" height="34"/>
+                                        <rect key="frame" x="350" y="246" width="102" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <connections>
                                             <action selector="slideChange:" destination="9mF-1f-gLd" eventType="valueChanged" id="nu5-rw-AI0"/>
                                         </connections>
                                     </slider>
                                     <slider opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="CWs-P7-HFv">
-                                        <rect key="frame" x="350" y="192" width="89" height="34"/>
+                                        <rect key="frame" x="350" y="211" width="102" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <connections>
                                             <action selector="slideChange:" destination="9mF-1f-gLd" eventType="valueChanged" id="C4P-yF-IDg"/>
                                         </connections>
                                     </slider>
                                     <slider opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="pds-1m-gNz">
-                                        <rect key="frame" x="350" y="137" width="89" height="34"/>
+                                        <rect key="frame" x="350" y="176" width="102" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <connections>
                                             <action selector="slideChange:" destination="9mF-1f-gLd" eventType="valueChanged" id="UDr-95-83e"/>
                                         </connections>
                                     </slider>
                                     <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="wqj-hF-mdj">
-                                        <rect key="frame" x="350" y="86" width="89" height="34"/>
+                                        <rect key="frame" x="351" y="140" width="101" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <connections>
                                             <action selector="slideChange:" destination="9mF-1f-gLd" eventType="valueChanged" id="rlM-fj-pj5"/>
                                         </connections>
                                     </slider>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="log(n)" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="47" translatesAutoresizingMaskIntoConstraints="NO" id="nd8-0O-dUi">
-                                        <rect key="frame" x="390" y="70" width="47" height="21"/>
+                                        <rect key="frame" x="391" y="130" width="47" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="n" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="35" translatesAutoresizingMaskIntoConstraints="NO" id="AZi-oM-HRk">
-                                        <rect key="frame" x="402" y="120" width="35" height="19"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="n" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="19" translatesAutoresizingMaskIntoConstraints="NO" id="AZi-oM-HRk">
+                                        <rect key="frame" x="404" y="166" width="19" height="19"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="n log(n)" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="50" translatesAutoresizingMaskIntoConstraints="NO" id="Jg5-Tv-752">
-                                        <rect key="frame" x="387" y="173" width="50" height="30"/>
+                                        <rect key="frame" x="388" y="205" width="50" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="n^2" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="32" translatesAutoresizingMaskIntoConstraints="NO" id="rhD-vz-j9z">
-                                        <rect key="frame" x="396" y="227" width="32" height="31"/>
+                                        <rect key="frame" x="397" y="238" width="32" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Adjust the value of the n to see the run time impact as problem sizes increase" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hc0-EN-TH7">
-                                        <rect key="frame" x="199" y="695" width="594" height="21"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Adjust the value of the n to see the run time impact as problem sizes increase" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="150" translatesAutoresizingMaskIntoConstraints="NO" id="hc0-EN-TH7">
+                                        <rect key="frame" x="20" y="275" width="150" height="41"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BvB-j7-avU">
-                                        <rect key="frame" x="445" y="81" width="16" height="44"/>
+                                        <rect key="frame" x="458" y="143" width="10" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p36-7a-bOG">
-                                        <rect key="frame" x="445" y="132" width="16" height="44"/>
+                                        <rect key="frame" x="458" y="179" width="10" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TDN-hh-G29">
-                                        <rect key="frame" x="445" y="187" width="16" height="44"/>
+                                        <rect key="frame" x="458" y="214" width="10" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HSi-kV-wtd">
-                                        <rect key="frame" x="445" y="239" width="16" height="44"/>
+                                        <rect key="frame" x="458" y="249" width="10" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.03529411927" green="0.9450981021" blue="0.2470588386" alpha="1" colorSpace="deviceRGB"/>
                                     </view>
@@ -281,10 +281,10 @@
                                             <segue destination="4FT-Er-2Wr" kind="unwind" unwindAction="done:" id="Qj6-Y4-Jje"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Adjust the c constant factor for each of the functions to see the overall impact on run time." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="150" translatesAutoresizingMaskIntoConstraints="NO" id="8B6-Tq-E3b">
-                                        <rect key="frame" x="26" y="261" width="150" height="70"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="C Constant Factor" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="146" translatesAutoresizingMaskIntoConstraints="NO" id="8B6-Tq-E3b">
+                                        <rect key="frame" x="353" y="89" width="146" height="43"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -421,7 +421,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iG0-A7-jPg">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1000" minValue="1000" maxValue="1000000" translatesAutoresizingMaskIntoConstraints="NO" id="nqu-qV-DRM">
@@ -494,7 +494,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3h0-EO-olo">
-                                        <rect key="frame" x="20" y="25" width="345" height="210"/>
+                                        <rect key="frame" x="20" y="31" width="345" height="210"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <string key="text">Here you can see computational complexity in action.  The app will generate some random integers, and then sort them using either quick sort, or bubble sort.   Quick sort is a classic divide-and-conquer approach, and is O(n log n).  Bubble sort is one of the simplest and easiest sorting algorithms to implement, but is O(n^2).  If you've looked at the Big-O complexity curves, you can probably guess which one is faster.  You can run them here to see for yourself that this is the case.   Try running Quick Sort on problems of different sizes, to see how long things take on your iPad.  Then try Bubble Sort.  Start small with Bubble Sort, and gradually increase the size of the problems....</string>
@@ -502,7 +502,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <button opaque="NO" alpha="0.75" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gPr-Qg-jbo">
-                                        <rect key="frame" x="392" y="25" width="50" height="30"/>
+                                        <rect key="frame" x="392" y="31" width="50" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <state key="normal" title="Done">
