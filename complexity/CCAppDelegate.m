@@ -14,6 +14,32 @@
 {
     // Override point for customization after application launch.
     NSLog(@"Computational Complexity time!");
+    
+    // Override point for customization after application launch.
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){
+        UIStoryboard *storyBoard;
+        
+        CGSize iOSDeviceScreenSize = [[UIScreen mainScreen] bounds].size;
+        
+        NSLog(@"height:");
+        NSLog(@"%f", iOSDeviceScreenSize.height);
+        NSLog(@"width:");
+        NSLog(@"%f", iOSDeviceScreenSize.width);
+        
+        if(iOSDeviceScreenSize.height  == 568){
+            NSLog(@"Loading 4 inch storyboard");
+            storyBoard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+            UIViewController *initViewController = [storyBoard instantiateInitialViewController];
+            [self.window setRootViewController:initViewController];
+        }
+        if(iOSDeviceScreenSize.height  == 480){
+            NSLog(@"Loading 3.5 inch");
+            storyBoard = [UIStoryboard storyboardWithName:@"Main_iPhone3point5" bundle:nil];
+            UIViewController *initViewController = [storyBoard instantiateInitialViewController];
+            [self.window setRootViewController:initViewController];
+        }
+    }
+    
     return YES;
 }
 							
