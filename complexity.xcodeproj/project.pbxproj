@@ -35,6 +35,8 @@
 		74FBB810185417BA00E275A5 /* complexityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FBB80F185417BA00E275A5 /* complexityTests.m */; };
 		74FBB81B1854188600E275A5 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FBB81A1854188600E275A5 /* InfoViewController.m */; };
 		74FBB81E18541B7B00E275A5 /* ExperimentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FBB81D18541B7B00E275A5 /* ExperimentViewController.m */; };
+		E1366D41187F6E9A001402F5 /* EVC_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1366D40187F6E9A001402F5 /* EVC_iPhone.xib */; };
+		E1366D43187F720F001402F5 /* EVC_iPhone4inch.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1366D42187F720F001402F5 /* EVC_iPhone4inch.xib */; };
 		E19C026C187EED2E001B6DEE /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E19C026B187EED2E001B6DEE /* Main_iPhone.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +88,8 @@
 		74FBB81A1854188600E275A5 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
 		74FBB81C18541B7B00E275A5 /* ExperimentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExperimentViewController.h; sourceTree = "<group>"; };
 		74FBB81D18541B7B00E275A5 /* ExperimentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExperimentViewController.m; sourceTree = "<group>"; };
+		E1366D40187F6E9A001402F5 /* EVC_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EVC_iPhone.xib; sourceTree = "<group>"; };
+		E1366D42187F720F001402F5 /* EVC_iPhone4inch.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EVC_iPhone4inch.xib; sourceTree = "<group>"; };
 		E19C026B187EED2E001B6DEE /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -180,6 +184,8 @@
 				74FBB81C18541B7B00E275A5 /* ExperimentViewController.h */,
 				74FBB81D18541B7B00E275A5 /* ExperimentViewController.m */,
 				74781662186F9F88009CE8B9 /* EVC_iPad.xib */,
+				E1366D40187F6E9A001402F5 /* EVC_iPhone.xib */,
+				E1366D42187F720F001402F5 /* EVC_iPhone4inch.xib */,
 				74781653186E8A16009CE8B9 /* ComplexityGraphViewController.h */,
 				74781654186E8A16009CE8B9 /* ComplexityGraphViewController.m */,
 				74ABB2991855204D00856895 /* ComplexityGraph.h */,
@@ -311,10 +317,12 @@
 				74781659186E924F009CE8B9 /* qs.html in Resources */,
 				7478165B186E9268009CE8B9 /* bubble.html in Resources */,
 				74781652186E844E009CE8B9 /* cambodia.png in Resources */,
+				E1366D43187F720F001402F5 /* EVC_iPhone4inch.xib in Resources */,
 				74FBB7F5185417B900E275A5 /* Main_iPhone3point5.storyboard in Resources */,
 				74ABFF3C186E2CFC006BBC6D /* about.html in Resources */,
 				E19C026C187EED2E001B6DEE /* Main_iPhone.storyboard in Resources */,
 				74FBB7EC185417B900E275A5 /* InfoPlist.strings in Resources */,
+				E1366D41187F6E9A001402F5 /* EVC_iPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

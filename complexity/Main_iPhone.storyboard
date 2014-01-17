@@ -460,7 +460,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" alpha="0.89999997615814209" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F88-Z6-Duc">
-                                        <rect key="frame" x="443" y="120" width="89" height="20"/>
+                                        <rect key="frame" x="437" y="112" width="100" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -477,7 +477,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" alpha="0.89999997615814209" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zj2-Kx-KR9">
-                                        <rect key="frame" x="443" y="84" width="89" height="20"/>
+                                        <rect key="frame" x="437" y="72" width="100" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -511,7 +511,7 @@
                                         <rect key="frame" x="28" y="34" width="390" height="210"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <mutableString key="text">Here you can see computational complexity in action.  The app will generate some random integers, and then sort them using either quick sort, or bubble sort.   Quick sort is a classic divide-and-conquer approach, and is O(n log n).  Bubble sort is one of the simplest and easiest sorting algorithms to implement, but is O(n^2).  If you've looked at the Big-O complexity curves, you can probably guess which one is faster.  You can run them here to see for yourself that this is the case.   Try running Quick Sort on problems of different sizes, to see how long things take on your iPad.  Then try Bubble Sort.  Start small with Bubble Sort, and gradually increase the size of the problems....</mutableString>
+                                        <string key="text">Here you can see computational complexity in action.  The app will generate some random integers, and then sort them using either quick sort, or bubble sort.   Quick sort is a classic divide-and-conquer approach, and is O(n log n).  Bubble sort is one of the simplest and easiest sorting algorithms to implement, but is O(n^2).  If you've looked at the Big-O complexity curves, you can probably guess which one is faster.  You can run them here to see for yourself that this is the case.   Try running Quick Sort on problems of different sizes, to see how long things take on your iPad.  Then try Bubble Sort.  Start small with Bubble Sort, and gradually increase the size of the problems....</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
@@ -531,6 +531,23 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <segue destination="ZUz-lv-RFb" kind="unwind" unwindAction="done:" id="1EM-pI-mvV"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" alpha="0.89999997615814209" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k58-vD-Shc">
+                                        <rect key="frame" x="437" y="152" width="100" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="Run InsertionSort">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="runAlgorithm:" destination="PZk-jP-bkT" eventType="touchUpInside" id="T3y-Ya-IDp"/>
                                         </connections>
                                     </button>
                                 </subviews>

@@ -132,6 +132,7 @@ BOOL isRunning;
 
 -(void)bubbleSort
 {
+    NSLog(@"Running bubble sort");
     int i, j;
     for (i = 0; i < problemSize; ++i)
     {
@@ -154,10 +155,32 @@ BOOL isRunning;
                 data[j] = t;
             }
         }
-        // NSLog(@"Running sort");
     }
 }
+-(void)insertionSort{
+    NSLog(@"Running insertion sort");
+    int j, i, key;
+    for(j = 1; j < problemSize; j++){
+        key = data[j];
+        i = j -1;
+        
+        while(i > 0 && data[i] > key){
+            data[i + 1] = data[i];
+            i = i -1;
+        }
+        data[i + 1] = key;
+    }
+    
+//    for(int c = 0; c < problemSize; c++){
+//        //NSLog(@"i= %i",data[c]);
+//        //NSLog(@"c %i",c);
+//        if(c > 0 && data[c] < data[c-1]){
+//            NSLog(@"error?");
+//            NSLog(@"c %i",c);
+//        }
+//    }
 
+}
 
 int intCompare(const void *a, const void *b)
 {
@@ -170,6 +193,7 @@ int intCompare(const void *a, const void *b)
 
 -(void)quickSort
 {
+    NSLog(@"running quick sort");
     qsort(data, problemSize, sizeof(int), intCompare);
 }
 -(void)do_it
@@ -193,6 +217,9 @@ int intCompare(const void *a, const void *b)
             break;
         case 1:
             [self quickSort];
+            break;
+        case 2:
+            [self insertionSort];
             break;
     }
     
@@ -268,7 +295,20 @@ int intCompare(const void *a, const void *b)
         UINib *nib;
     
         if (LDBG) NSLog(@"Creating self from decoder, loading nib");
-        nib = [UINib nibWithNibName:@"EVC_iPad" bundle:nil];
+        
+        CGSize iOSDeviceScreenSize = [[UIScreen mainScreen] bounds].size;
+
+        if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){//iPhone View
+            if(iOSDeviceScreenSize.height  == 568){
+                nib = [UINib nibWithNibName:@"EVC_iPhone4inch" bundle:nil];//3.5 inch
+            }
+            else{
+                nib = [UINib nibWithNibName:@"EVC_iPhone" bundle:nil];//3.5 inch
+            }
+        }
+        else{//iPad View
+            nib = [UINib nibWithNibName:@"EVC_iPad" bundle:nil];
+        }
         [nib instantiateWithOwner:self options:nil];
     }
     
