@@ -59,6 +59,7 @@ static int getUptimeInMilliseconds()
 }
 
 int *data;
+int *temp;
 BOOL shouldRun;
 BOOL isRunning;
 
@@ -180,43 +181,49 @@ BOOL isRunning;
     }
 }
 
--(void)selectionSort{
-    NSLog(@"in selectionSort method");
-}
-
-
--(void)mergeSort{//int a[], int low, int high       ..params
-//    if (low < high) {
-//        int m = (high + low)/2;
-//        mergesort(a, low, m);
-//        mergesort(a, m + 1, high);
-//        merge(a, low, m, high);
-//    }
+-(void)selectionSort{// just coded in, may be wrong.. need debug
+    int choice, next, original, originalSpot;//move up later.....
     
-}
--(void)merge{//int a[], int low, int mid, int high  ...params
-//    int b[10000];
-//    int i = low, j = mid + 1, k = 0;
-//    
-//    while (i <= mid && j <= high) {
-//        if (a[i] <= a[j])
-//            b[k++] = a[i++];
-//        else
-//            b[k++] = a[j++];
+//    NSLog(@"in selectionSort method");
+//    for(int j = 0; j < problemSize; j++){
+//        NSLog(@"%i", j);
+//        NSLog(@"%i", data[j]);
 //    }
-//    while (i <= mid)
-//        b[k++] = a[i++];
-//    
-//    while (j <= high)
-//        b[k++] = a[j++];
-//    
-//    k--;
-//    while (k >= 0) {
-//        a[low + k] = b[k];
-//        k--;
+//    NSLog(@"------------------");
+    
+    for(int i = 0; i < problemSize; i++){
+        choice = data[i];
+        original = choice;
+        next = i + 1;
+        for(next; next < problemSize; next++){
+            
+            if (!shouldRun)
+            {
+                problemSize = 1;
+                continue;
+            }
+            
+            if(data[next] < choice){
+                choice = data[next];
+                originalSpot = next;
+            }
+
+        }
+        data[i] = choice;
+        data[originalSpot] = original;
+    }
+    
+//    for(int j = 0; j < problemSize; j++){
+//        NSLog(@"%i", j);
+//        NSLog(@"%i", data[j]);
 //    }
 }
 
+-(void) debug{
+    for(int i = 0; i< problemSize; i++){
+        NSLog(@"%i", data[i]);
+    }
+}
 
 
 int intCompare(const void *a, const void *b)
@@ -259,7 +266,6 @@ int intCompare(const void *a, const void *b)
             [self insertionSort];
             break;
         case 3:
-            [self mergeSort];
             NSLog(@"merge sort in case");
             break;
         case 4:
