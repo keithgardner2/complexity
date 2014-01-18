@@ -163,24 +163,61 @@ BOOL isRunning;
     for(j = 1; j < problemSize; j++){
         key = data[j];
         i = j -1;
-        
+            // Added in to the code, so that if
+            // the user wants to terminate a run, we can
+            // do that, and then be able to clean up
+            // memory that was allocated temporarily
+            if (!shouldRun)
+            {
+                problemSize = 1;
+                continue;
+            }
         while(i > 0 && data[i] > key){
             data[i + 1] = data[i];
             i = i -1;
         }
         data[i + 1] = key;
     }
-    
-//    for(int c = 0; c < problemSize; c++){
-//        //NSLog(@"i= %i",data[c]);
-//        //NSLog(@"c %i",c);
-//        if(c > 0 && data[c] < data[c-1]){
-//            NSLog(@"error?");
-//            NSLog(@"c %i",c);
-//        }
-//    }
-
 }
+
+-(void)selectionSort{
+    NSLog(@"in selectionSort method");
+}
+
+
+-(void)mergeSort{//int a[], int low, int high       ..params
+//    if (low < high) {
+//        int m = (high + low)/2;
+//        mergesort(a, low, m);
+//        mergesort(a, m + 1, high);
+//        merge(a, low, m, high);
+//    }
+    
+}
+-(void)merge{//int a[], int low, int mid, int high  ...params
+//    int b[10000];
+//    int i = low, j = mid + 1, k = 0;
+//    
+//    while (i <= mid && j <= high) {
+//        if (a[i] <= a[j])
+//            b[k++] = a[i++];
+//        else
+//            b[k++] = a[j++];
+//    }
+//    while (i <= mid)
+//        b[k++] = a[i++];
+//    
+//    while (j <= high)
+//        b[k++] = a[j++];
+//    
+//    k--;
+//    while (k >= 0) {
+//        a[low + k] = b[k];
+//        k--;
+//    }
+}
+
+
 
 int intCompare(const void *a, const void *b)
 {
@@ -193,7 +230,7 @@ int intCompare(const void *a, const void *b)
 
 -(void)quickSort
 {
-    NSLog(@"running quick sort");
+    NSLog(@"Running quick sort");
     qsort(data, problemSize, sizeof(int), intCompare);
 }
 -(void)do_it
@@ -221,6 +258,15 @@ int intCompare(const void *a, const void *b)
         case 2:
             [self insertionSort];
             break;
+        case 3:
+            [self mergeSort];
+            NSLog(@"merge sort in case");
+            break;
+        case 4:
+            NSLog(@"selectionSort in case");
+            [self selectionSort];
+            break;
+            
     }
     
     if (LDBG) NSLog(@"Ending.");
