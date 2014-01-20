@@ -62,7 +62,7 @@ int *data;
 int *temp;
 BOOL shouldRun;
 BOOL isRunning;
-
+int choice, next, original, originalSpot;//used in selection sort
 
 -(IBAction)nChange:(id)sender
 {
@@ -159,7 +159,7 @@ BOOL isRunning;
     }
 }
 -(void)insertionSort{
-    NSLog(@"Running insertion sort");
+    //NSLog(@"Running insertion sort");
     int j, i, key;
     for(j = 1; j < problemSize; j++){
         key = data[j];
@@ -181,22 +181,12 @@ BOOL isRunning;
     }
 }
 
--(void)selectionSort{// just coded in, may be wrong.. need debug
-    int choice, next, original, originalSpot;//move up later.....
-    
-//    NSLog(@"in selectionSort method");
-//    for(int j = 0; j < problemSize; j++){
-//        NSLog(@"%i", j);
-//        NSLog(@"%i", data[j]);
-//    }
-//    NSLog(@"------------------");
-    
+-(void)selectionSort{
     for(int i = 0; i < problemSize; i++){
         choice = data[i];
         original = choice;
         next = i + 1;
         for(next; next < problemSize; next++){
-            
             if (!shouldRun)
             {
                 problemSize = 1;
@@ -212,11 +202,12 @@ BOOL isRunning;
         data[i] = choice;
         data[originalSpot] = original;
     }
+}
+-(void)rankSort{
     
-//    for(int j = 0; j < problemSize; j++){
-//        NSLog(@"%i", j);
-//        NSLog(@"%i", data[j]);
-//    }
+}
+-(void)heapSort{
+    
 }
 
 -(void) debug{
@@ -224,7 +215,6 @@ BOOL isRunning;
         NSLog(@"%i", data[i]);
     }
 }
-
 
 int intCompare(const void *a, const void *b)
 {
@@ -235,8 +225,7 @@ int intCompare(const void *a, const void *b)
 }
 
 
--(void)quickSort
-{
+-(void)quickSort{
     NSLog(@"Running quick sort");
     qsort(data, problemSize, sizeof(int), intCompare);
 }
@@ -257,12 +246,15 @@ int intCompare(const void *a, const void *b)
     switch (algType)
     {
         case 0:
+            NSLog(@"bubbleSort in case");
             [self bubbleSort];
             break;
-        case 1:
+        case 1://hoare
+            NSLog(@"quickSort hoare in case");
             [self quickSort];
             break;
         case 2:
+            NSLog(@"insertionSort in case");
             [self insertionSort];
             break;
         case 3:
@@ -272,7 +264,17 @@ int intCompare(const void *a, const void *b)
             NSLog(@"selectionSort in case");
             [self selectionSort];
             break;
-            
+        case 5:
+            NSLog(@"rankSort in case");
+            [self rankSort];
+            break;
+        case 6:
+            NSLog(@"heapSort in case");
+            [self heapSort];
+            break;
+        case 7:
+            NSLog(@"quickSort Lomuto in case");
+            break;
     }
     
     if (LDBG) NSLog(@"Ending.");
