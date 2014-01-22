@@ -6,8 +6,14 @@
 //  Copyright (c) 2013 Optimality Research Group. All rights reserved.
 //
 
+#include <stdio.h>
+#include <stdlib.h>
+#include<stdio.h>
+
 #import "ExperimentViewController.h"
 #define LDBG 0
+#define ValType double
+#define IS_LESS(v1, v2)  (v1 < v2)
 
 @interface ExperimentViewController ()
 
@@ -207,7 +213,8 @@ int choice, next, original, originalSpot;//used in selection sort
     
 }
 -(void)heapSort{
-    
+    NSLog(@"Running heap sort");
+    heapsort(data, problemSize, sizeof(int), intCompare);
 }
 
 -(void) debug{
