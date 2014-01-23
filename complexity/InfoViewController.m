@@ -16,6 +16,8 @@
 @implementation InfoViewController
 @synthesize wv, fileToLoad;
 
+int html = -1;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -46,54 +48,55 @@
         [wv loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:fileToLoad ofType:@"html"] isDirectory:NO]]];
         NSLog(@"Loading file %@", fileToLoad);
     }
-    else
-    {
-        //want to use some sort of tag on the buttons, use:         int algType = [sender tag];
-        //but how to retrieve the tag?
+    else if (html > -1){
+        NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+        NSNumber *htmlTag = nil;
+        
+        if (standardUserDefaults)
+            htmlTag = [standardUserDefaults objectForKey:@"age"];
+        html = [htmlTag intValue];
+
+        NSLog(@"%i", html);
+        switch (html){
+            case 0:
+                NSLog(@"bubbleSort HTML");
+                [wv loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"bubble" ofType:@"html"] isDirectory:NO]]];
+                break;
+            case 1://hoare
+                NSLog(@"quickSort hoare HTML");
+                [wv loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"quickSortHoare" ofType:@"html"] isDirectory:NO]]];
+                break;
+            case 2:
+                NSLog(@"insertionSort HTML");
+                [wv loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"insertion" ofType:@"html"] isDirectory:NO]]];
+                break;
+            case 3:
+                NSLog(@"merge sort HMTL");
+                [wv loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"merge" ofType:@"html"] isDirectory:NO]]];
+                break;
+            case 4:
+                NSLog(@"selectionSort HTML");
+                [wv loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"selection" ofType:@"html"] isDirectory:NO]]];
+                break;
+            case 5:
+                NSLog(@"rankSort HTML");
+                [wv loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"rank" ofType:@"html"] isDirectory:NO]]];
+                break;
+            case 6:
+                NSLog(@"heapSort HTML");
+                [wv loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"heap" ofType:@"html"] isDirectory:NO]]];
+                break;
+            case 7:
+                NSLog(@"quickSort Lomuto HTML");
+                [wv loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"quickSortLomuto" ofType:@"html"] isDirectory:NO]]];
+                break;
+            }
+    }
+    else{
         NSLog(@"Loading about");
         [wv loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"about" ofType:@"html"] isDirectory:NO]]];
     }
-    
-    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-    NSNumber *htmlTag = nil;
-    
-    if (standardUserDefaults)
-        htmlTag = [standardUserDefaults objectForKey:@"age"];
-    
-    int html = [htmlTag intValue];
-    
-    switch (html){
-        case 0:
-            NSLog(@"bubbleSort HTML");
-            //[self bubbleSort];
-            break;
-        case 1://hoare
-            NSLog(@"quickSort hoare HTML");
-            //[self quickSort];
-            break;
-        case 2:
-            NSLog(@"insertionSort HTML");
-            //[self insertionSort];
-            break;
-        case 3:
-            NSLog(@"merge sort HMTL");
-            break;
-        case 4:
-            NSLog(@"selectionSort HTML");
-            //[self selectionSort];
-            break;
-        case 5:
-            NSLog(@"rankSort HTML");
-            //[self rankSort];
-            break;
-        case 6:
-            NSLog(@"heapSort HTML");
-            //[self heapSort];
-            break;
-        case 7:
-            NSLog(@"quickSort Lomuto HTML");
-            break;
-    }
+    html = -1;//reset tag
 }
 
 - (void)didReceiveMemoryWarning

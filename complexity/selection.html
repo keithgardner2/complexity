@@ -1,1 +1,25 @@
 <h1>Selection Sort</h1>
+
+<p>Selection sort is a fairly simple sorting algorithm to implement. It has a ____ average complexity and a ____ best case, ___ worst case.
+
+<p> Here's some code...
+
+<code>
+    <pre>
+    for(int i = 0; i < problemSize; i++){
+        choice = data[i];
+        original = choice;
+        next = i + 1;
+            
+        for(next; next < problemSize; next++){
+            if(data[next] < choice){
+                choice = data[next];
+                originalSpot = next;
+            }
+        }
+            
+        data[i] = choice;
+        data[originalSpot] = original;
+    }
+    </pre>
+</code>

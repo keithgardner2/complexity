@@ -13,7 +13,8 @@
 #import "ExperimentViewController.h"
 #define LDBG 0
 #define ValType double
-#define IS_LESS(v1, v2)  (v1 < v2)
+
+int html;
 
 @interface ExperimentViewController ()
 
@@ -38,6 +39,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self resetHTMLTag];//reset html file to load depending on button
 	// Do any additional setup after loading the view.
     [self nChange:nil];
     [elapsed setText:@"--"];
@@ -209,7 +211,32 @@ int choice, next, original, originalSpot;//used in selection sort
         data[originalSpot] = original;
     }
 }
--(void)rankSort{
+-(void)rankSort{//still need to implement !shouldRun or something in inner most loop
+    NSLog(@"running debug before");
+    [self debug];
+    
+    NSLog(@"running rank sort...");
+    
+    int spot;
+    int copy[problemSize];
+    for(int i = 0; i < problemSize; i++){
+        spot = 0;
+        for(int j = 0 ; j < problemSize; j++){
+            if (!shouldRun){
+                problemSize = 1;
+                continue;
+            }
+            if(data[i] < data[j] && data[i] != data[j]){
+                spot++;
+            }
+        }
+        copy[spot] = data[i];
+    }
+    
+    NSLog(@"debug after");
+    for(int i = 0; i< problemSize; i++){
+        NSLog(@"%i", copy[i]);//new sorted data is in copy, not original array
+    }
     
 }
 -(void)heapSort{
@@ -253,34 +280,26 @@ int intCompare(const void *a, const void *b)
     switch (algType)
     {
         case 0:
-            NSLog(@"bubbleSort in case");
             [self bubbleSort];
             break;
         case 1://hoare
-            NSLog(@"quickSort hoare in case");
             [self quickSort];
             break;
         case 2:
-            NSLog(@"insertionSort in case");
             [self insertionSort];
             break;
         case 3:
-            NSLog(@"merge sort in case");
             break;
         case 4:
-            NSLog(@"selectionSort in case");
             [self selectionSort];
             break;
         case 5:
-            NSLog(@"rankSort in case");
             [self rankSort];
             break;
         case 6:
-            NSLog(@"heapSort in case");
             [self heapSort];
             break;
-        case 7:
-            NSLog(@"quickSort Lomuto in case");
+        case 7://quicksort lomuto
             break;
     }
     
@@ -385,7 +404,7 @@ int intCompare(const void *a, const void *b)
 -(IBAction)pickHTML:(id)sender{
     //htmlTag = [sender tag];
     
-    int html = [sender tag]; // Just an example
+    html = [sender tag]; // Just an example
     
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
     
@@ -393,5 +412,8 @@ int intCompare(const void *a, const void *b)
         [standardUserDefaults setObject:[NSNumber numberWithInt:html] forKey:@"age"];
         [standardUserDefaults synchronize];
     }
+}
+-(void)resetHTMLTag{
+    html = -1;
 }
 @end
