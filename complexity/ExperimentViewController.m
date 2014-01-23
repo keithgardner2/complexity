@@ -382,4 +382,16 @@ int intCompare(const void *a, const void *b)
     [runShield removeFromSuperview];
     // [self setRunShield:nil];
 }
+-(IBAction)pickHTML:(id)sender{
+    //htmlTag = [sender tag];
+    
+    int html = [sender tag]; // Just an example
+    
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    
+    if (standardUserDefaults) {
+        [standardUserDefaults setObject:[NSNumber numberWithInt:html] forKey:@"age"];
+        [standardUserDefaults synchronize];
+    }
+}
 @end
