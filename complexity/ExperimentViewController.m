@@ -40,6 +40,10 @@ int global_kill_flag = 0;
 bool randomization = false;
 int html;
 
+bool ascending = false;
+bool descending = false;
+bool equal = false;
+
 @interface ExperimentViewController ()
 
 @end
@@ -386,8 +390,9 @@ int lomuto_partition(int *arr, int start, int end, int pi)
 -(void)do_it
 {
     int i;
-
-    data = (int *)malloc(sizeof(int) * problemSize);
+    
+    data = (int *)malloc(sizeof(int) * problemSize);//This sets data to a bunch of random numbers
+    
     if (data == NULL)
     {
         NSLog(@"Problem too large!");
@@ -403,16 +408,12 @@ int lomuto_partition(int *arr, int start, int end, int pi)
             [self bubbleSort];
             break;
         case 1://hoare
-            //[self debug];
-            if(randomization){
-                NSLog(@"running hoare rand");
-                quicksort_hoare_rand(data, 0, problemSize-1);
-            }
+            if(randomization){//this is false by default, gets set in toggleRandomization
+                NSLog(@"hoare rand");
+                quicksort_hoare_rand(data, 0, problemSize-1);}
             else{
-                NSLog(@"running hoare not rand");
-                quicksort_hoare_norand(data, 0, problemSize-1);
-            }
-            //[self debug];
+                NSLog(@"hoare not rand");
+                quicksort_hoare_norand(data, 0, problemSize-1);}
             break;
         case 2:
             [self insertionSort];
@@ -429,16 +430,12 @@ int lomuto_partition(int *arr, int start, int end, int pi)
             [self heapSort];
             break;
         case 7://quicksort lomuto
-            //[self debug];
-            if(randomization){
-                NSLog(@"running lomuto rand");
-                quicksort_lomuto_rand(data, 0, problemSize-1);
-            }
+            if(randomization){//this is false by default, gets set in toggleRandomization
+                NSLog(@"lomuto rand");
+                quicksort_lomuto_rand(data, 0, problemSize-1);}
             else{
-                NSLog(@"running lomuto not rand");
-                quicksort_lomuto_norand(data, 0, problemSize-1);
-            }
-            //[self debug];
+                NSLog(@"lomuto not rand");
+                quicksort_lomuto_norand(data, 0, problemSize-1);}
             break;
     }
     
@@ -551,12 +548,15 @@ int lomuto_partition(int *arr, int start, int end, int pi)
 }
 - (IBAction)toggleAscending:(id)sender {
     NSLog(@"toggling ascending...");
+    ascending = !ascending;
 }
 - (IBAction)toggleDescending:(id)sender {
     NSLog(@"toggling descending...");
+    descending = !descending;
 }
 - (IBAction)toggleValuesEqual:(id)sender {
     NSLog(@"toggling values equal...");
+    equal = !equal;
 }
 - (IBAction)toggleRandomization:(id)sender {
     randomization = !randomization;

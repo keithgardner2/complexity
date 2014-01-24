@@ -1,1 +1,24 @@
 <h1>Insertion Sort</h1>
+
+<p>Insertion sort.... is ....
+
+<p>Average perforamce
+Worst case perforamce
+Best case perforamce
+
+<code>
+<pre>
+    -(void)insertionSort{
+        int j, i, key;
+        for(j = 1; j < problemSize; j++){
+            key = data[j];
+            i = j -1;
+            while(i > 0 && data[i] > key){
+                data[i + 1] = data[i];
+                i = i -1;
+            }
+            data[i + 1] = key;
+        }
+    }
+</pre>
+</code>

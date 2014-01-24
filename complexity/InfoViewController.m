@@ -90,6 +90,10 @@ int html = -1;
                 NSLog(@"quickSort Lomuto HTML");
                 [wv loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"quickSortLomuto" ofType:@"html"] isDirectory:NO]]];
                 break;
+            case 8:
+                NSLog(@"iPhone storyboard in case");
+                [wv loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"iPhoneVersion" ofType:@"html"] isDirectory:NO]]];
+                break;
             }
     }
     else{

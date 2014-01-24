@@ -1,1 +1,27 @@
 <h1>Bubble Sort</h1>
+
+<p>Bubble Sort is a simple sorting algorithm to implement. It is also slow as a consequence. Bubble sort goes through pairs of data and swaps them if they are in he wrong order, repeatedly.
+
+<p> Average performace: O(n^2)
+Worst Case performace: O(n^2)
+Best Case performance: O(n)
+
+<p>Heres the code for a bubblesort in c:
+
+<code>
+    <pre>
+    -(void)bubbleSort{
+        int i, j;
+        for (i = 0; i < problemSize; ++i){
+            for (j = i + 1; j < problemSize; ++j){
+                if (data[i] > data[j]){
+                    int t = data[i];
+                    data[i] = data[j];
+                    data[j] = t;
+                }
+            }
+        }
+    }
+
+</pre>
+</code>
