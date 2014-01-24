@@ -48,7 +48,7 @@ int html = -1;
         [wv loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:fileToLoad ofType:@"html"] isDirectory:NO]]];
         NSLog(@"Loading file %@", fileToLoad);
     }
-    else if (html > -1){
+    else if (html > -1){// if we are in live demo, we want to load sorting algorithm html
         NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
         NSNumber *htmlTag = nil;
         

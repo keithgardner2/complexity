@@ -9,11 +9,35 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include<stdio.h>
+#include <errno.h>
+#include <assert.h>
+#include <strings.h>
 
 #import "ExperimentViewController.h"
+
 #define LDBG 0
 #define ValType double
 
+#define RAND_LIMIT      1000
+
+#define LOMUTO_NO_RAND  0
+#define LOMUTO_RAND     1
+#define HOARE_NO_RAND   2
+#define HOARE_RAND      3
+
+#define QUICKSORT_ALGO HOARE_RAND
+
+#define SWAP(arr, x, y)     \
+do {                    \
+int t = arr[x];     \
+arr[x] = arr[y];    \
+arr[y] = t;         \
+} while(0);
+
+#define RAND_RANGE(min, max) ((rand() % (max - min)) + min)
+
+int global_kill_flag = 0;
+bool randomization = false;
 int html;
 
 @interface ExperimentViewController ()
@@ -259,10 +283,106 @@ int intCompare(const void *a, const void *b)
 }
 
 
--(void)quickSort{
-    NSLog(@"Running quick sort");
-    qsort(data, problemSize, sizeof(int), intCompare);
+//-(void)quickSort{
+//    NSLog(@"Running quick sort");
+//    qsort(data, problemSize, sizeof(int), intCompare);
+//}
+
+void quicksort_lomuto_norand(int *arr, int start, int end){
+    if (start >= end)
+    {
+        return;
+    }
+    
+    int p = lomuto_partition(arr, start, end, start);
+    quicksort_lomuto_norand(arr, start, p-1);
+    quicksort_lomuto_norand(arr, p+1, end);
 }
+void quicksort_lomuto_rand(int *arr, int start, int end)
+{
+    if (start >= end)
+    {
+        return;
+    }
+    
+    int p = lomuto_partition(arr, start, end, RAND_RANGE(start, end));
+    quicksort_lomuto_rand(arr, start, p-1);
+    quicksort_lomuto_rand(arr, p+1, end);
+}
+
+void quicksort_hoare_norand(int *arr, int start, int end){
+    if (start >= end)
+    {
+        return;
+    }
+    
+    int p = hoare_partition(arr, start, end, start);
+    quicksort_hoare_norand(arr, start, p);
+    quicksort_hoare_norand(arr, p+1, end);
+}
+void quicksort_hoare_rand(int *arr, int start, int end)
+{
+    if (start >= end)
+    {
+        return;
+    }
+    
+    int p = hoare_partition(arr, start, end, RAND_RANGE(start, end));
+    quicksort_hoare_rand(arr, start, p);
+    quicksort_hoare_rand(arr, p+1, end);
+}
+
+int hoare_partition(int *arr, int start, int end, int pi)
+{
+    int i = start-1;
+    int j = end+1;
+    int pv = arr[pi];
+    
+    while(1)
+    {
+        if (global_kill_flag)
+        {
+            exit(1);
+        }
+        
+        while(arr[++i] < pv);
+        while(arr[--j] > pv);
+        if (i < j)
+        {
+            SWAP(arr, i, j);
+        }
+        else
+        {
+            return j;
+        }
+    }
+}
+
+int lomuto_partition(int *arr, int start, int end, int pi)
+{
+    int pv = arr[pi];
+    int si = start;
+    
+    SWAP(arr, pi, end);
+    
+    for (int i = start; i < end; ++i)
+    {
+        if (global_kill_flag)
+        {
+            exit(1);
+        }
+        
+        if (arr[i] <= pv)
+        {
+            SWAP(arr, si, i);
+            ++si;
+        }
+    }
+    
+    SWAP(arr, si, end);
+    return si;
+}
+
 -(void)do_it
 {
     int i;
@@ -283,7 +403,16 @@ int intCompare(const void *a, const void *b)
             [self bubbleSort];
             break;
         case 1://hoare
-            [self quickSort];
+            //[self debug];
+            if(randomization){
+                NSLog(@"running hoare rand");
+                quicksort_hoare_rand(data, 0, problemSize-1);
+            }
+            else{
+                NSLog(@"running hoare not rand");
+                quicksort_hoare_norand(data, 0, problemSize-1);
+            }
+            //[self debug];
             break;
         case 2:
             [self insertionSort];
@@ -300,6 +429,16 @@ int intCompare(const void *a, const void *b)
             [self heapSort];
             break;
         case 7://quicksort lomuto
+            //[self debug];
+            if(randomization){
+                NSLog(@"running lomuto rand");
+                quicksort_lomuto_rand(data, 0, problemSize-1);
+            }
+            else{
+                NSLog(@"running lomuto not rand");
+                quicksort_lomuto_norand(data, 0, problemSize-1);
+            }
+            //[self debug];
             break;
     }
     
@@ -314,7 +453,6 @@ int intCompare(const void *a, const void *b)
 {
     shouldRun = FALSE;
 }
-
 
 -(IBAction)runAlgorithm:(id)sender
 {
@@ -345,10 +483,6 @@ int intCompare(const void *a, const void *b)
                        [self performSelectorOnMainThread:@selector(stopRun:) withObject:self waitUntilDone:NO];
                      });
 }
-
-
-
-
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -395,7 +529,6 @@ int intCompare(const void *a, const void *b)
     [self.view addSubview:runShield];
 }
 
-
 -(void)dismissShield
 {
     [runShield removeFromSuperview];
@@ -415,5 +548,17 @@ int intCompare(const void *a, const void *b)
 }
 -(void)resetHTMLTag{
     html = -1;
+}
+- (IBAction)toggleAscending:(id)sender {
+    NSLog(@"toggling ascending...");
+}
+- (IBAction)toggleDescending:(id)sender {
+    NSLog(@"toggling descending...");
+}
+- (IBAction)toggleValuesEqual:(id)sender {
+    NSLog(@"toggling values equal...");
+}
+- (IBAction)toggleRandomization:(id)sender {
+    randomization = !randomization;
 }
 @end
