@@ -169,7 +169,7 @@ int choice, next, original, originalSpot;//used in selection sort
 
 -(void)bubbleSort
 {
-    NSLog(@"Running bubble sort");
+    //NSLog(@"Running bubble sort");
     int i, j;
     for (i = 0; i < problemSize; ++i)
     {
@@ -240,10 +240,10 @@ int choice, next, original, originalSpot;//used in selection sort
     }
 }
 -(void)rankSort{//still need to implement !shouldRun or something in inner most loop
-    NSLog(@"running debug before");
-    [self debug];
+    //NSLog(@"running debug before");
+    //[self debug];
     
-    NSLog(@"running rank sort...");
+    //NSLog(@"running rank sort...");
     
     int spot;
     int copy[problemSize];
@@ -261,10 +261,10 @@ int choice, next, original, originalSpot;//used in selection sort
         copy[spot] = data[i];
     }
     
-    NSLog(@"debug after");
-    for(int i = 0; i< problemSize; i++){
-        NSLog(@"%i", copy[i]);//new sorted data is in copy, not original array
-    }
+    //NSLog(@"debug after");
+    //for(int i = 0; i< problemSize; i++){
+    //    NSLog(@"%i", copy[i]);//new sorted data is in copy, not original array
+    //}
     
 }
 -(void)heapSort{

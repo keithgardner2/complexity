@@ -1,14 +1,81 @@
-<h1>Quicksort with lomuto partitioning</h1>
+<h1>Quicksort (hoare partitioning)</h1>
 
-<p>Quick sort is a fast sorting algorithm with average complexity of O(n log n)
+<p>Quicksort is a fast sorting algorithm developed by Tony Hoare.
 
-<p>Here's a quicksort with lomuto partitioning, no randomization:(Thanks Anthony!)
+<p>Average complexity: O(n log n)<br>
+Worst Case: O(n^2)<br>
+Best Case: O(n log n)
+
+<h3>Here's quicksort with hoare partitioning, no randomization: (Thanks <a href = "http://huskyalgo.com">Anthony</a>!)</h3>
+
+<code>
+    <pre>
+        void quicksort_hoare_norand(int *arr, int start, int end){
+        if (start >= end){
+        return;
+        }
+        
+        int p = hoare_partition(arr, start, end, start);
+        quicksort_hoare_norand(arr, start, p);
+        quicksort_hoare_norand(arr, p+1, end);
+        }
+        
+        int hoare_partition(int *arr, int start, int end, int pi){
+        int i = start-1;
+        int j = end+1;
+        int pv = arr[pi];
+        
+        while(1){
+        if (global_kill_flag){
+        exit(1);
+        }
+        
+        while(arr[++i] < pv);
+            while(arr[--j] > pv);
+            if (i < j){
+                SWAP(arr, i, j);
+                }
+                else{
+                return j;
+                }
+                }
+                }
+                
+                </pre>
+</code>
+
+<h3> Here's quicksort with hoare partitioning and randomization:</h3>
+
+<code>
+    <pre>
+        void quicksort_hoare_rand(int *arr, int start, int end){
+        if (start >= end){
+        return;
+        }
+        
+        int p = hoare_partition(arr, start, end, RAND_RANGE(start, end));
+        quicksort_hoare_rand(arr, start, p);
+        quicksort_hoare_rand(arr, p+1, end);
+        }
+    </pre>
+</code>
+
+
+
+<h1>Quicksort (lomuto partitioning)</h1>
+
+<p>Quicksort is a fast sorting algorithm used in many standard libraries. This algorithm can handle large data sets very quickly. Crank the problem size up to a million and watch it complete in about the same time than it takes selection sort to finish on just a few thousand.
+
+<p>Average complexity: O(n log n)<br>
+Worst Case: O(n^2)<br>
+Best Case: O(n log n)<br>
+
+<h3>Here's quicksort with lomuto partitioning, no randomization: (Thanks <a href = "http://huskyalgo.com">Anthony</a>!)</h3>
 
 <code>
     <pre>
         void quicksort_lomuto_norand(int *arr, int start, int end){
-        if (start >= end)
-        {
+        if (start >= end){
         return;
         }
         
@@ -18,22 +85,18 @@
         }
         
         
-        int lomuto_partition(int *arr, int start, int end, int pi)
-        {
+        int lomuto_partition(int *arr, int start, int end, int pi){
         int pv = arr[pi];
         int si = start;
         
         SWAP(arr, pi, end);
         
-        for (int i = start; i < end; ++i)
-            {
-            if (global_kill_flag)
-            {
+        for (int i = start; i < end; ++i){
+            if (global_kill_flag){
             exit(1);
             }
             
-            if (arr[i] <= pv)
-            {
+            if (arr[i] <= pv){
             SWAP(arr, si, i);
             ++si;
             }
@@ -47,14 +110,12 @@
             </pre>
 </code>
 
-<p> Heres quicksort using lomuto_partition but with randomization!
+<h3> Here's quicksort using lomuto partitioning and randomization:</h3>
 
 <code>
     <pre>
-        void quicksort_lomuto_rand(int *arr, int start, int end)
-        {
-        if (start >= end)
-        {
+        void quicksort_lomuto_rand(int *arr, int start, int end){
+        if (start >= end){
         return;
         }
         
@@ -66,68 +127,134 @@
 </code>
 
 
-<h1>Quicksort with hoare partitioning</h1>
+<h1>Bubble sort</h1>
 
-<p>Heres quicksort with hoare partitioning, no randomization: (Thanks Anothony!)
+<p>Bubble sort is a simple sorting algorithm to implement. As a consequence, bubble sort takes a long time to run if the data is large. This algorithm goes through pairs of data and swaps them if they are in the wrong order, and repeats this until all of the data is sorted.
 
-<code>
-    <pre>
-        void quicksort_hoare_norand(int *arr, int start, int end){
-        if (start >= end)
-        {
-        return;
-        }
-        
-        int p = hoare_partition(arr, start, end, start);
-        quicksort_hoare_norand(arr, start, p);
-        quicksort_hoare_norand(arr, p+1, end);
-        }
-        
-        
-        int hoare_partition(int *arr, int start, int end, int pi)
-        {
-        int i = start-1;
-        int j = end+1;
-        int pv = arr[pi];
-        
-        while(1)
-        {
-        if (global_kill_flag)
-        {
-        exit(1);
-        }
-        
-        while(arr[++i] < pv);
-            while(arr[--j] > pv);
-            if (i < j)
-                {
-                SWAP(arr, i, j);
-                }
-                else
-                {
-                return j;
-                }
-                }
-                }
-                
-                </pre>
-</code>
+<p> Average performance: O(n^2)<br>
+Worst Case performance: O(n^2)<br>
+Best Case performance: O(n)
 
-<p> Heres Quicksort using hoare partitioning, but with randomization!
+<h3>Here's the code for a bubblesort in objective-c:</h3>
 
 <code>
     <pre>
-        void quicksort_hoare_rand(int *arr, int start, int end)
-        {
-        if (start >= end)
-        {
-        return;
-        }
-        
-        int p = hoare_partition(arr, start, end, RAND_RANGE(start, end));
-        quicksort_hoare_rand(arr, start, p);
-        quicksort_hoare_rand(arr, p+1, end);
-        }
-        
+        -(void)bubbleSort{
+        int i, j;
+        for (i = 0; i < problemSize; ++i){
+            for (j = i + 1; j < problemSize; ++j){
+            if (data[i] > data[j]){
+            int t = data[i];
+            data[i] = data[j];
+            data[j] = t;
+            }
+            }
+            }
+            }
     </pre>
 </code>
+
+
+<h1>Insertion sort</h1>
+
+<p>Insertion sort is another slow, simple sorting algorithm. This won't take long to run on small data sets, but if you run it on 50,000, you'll be waiting a while.
+
+<p>Average performance: O(n^2)<br>
+Worst case performance: O(n^2)<br>
+Best case performance: O(n)
+
+<h3>Insertion sort in objective c:</h3>
+
+<code>
+    <pre>
+        -(void)insertionSort{
+        int j, i, key;
+        for(j = 1; j < problemSize; j++){
+            key = data[j];
+            i = j -1;
+            while(i > 0 && data[i] > key){
+            data[i + 1] = data[i];
+            i = i -1;
+            }
+            data[i + 1] = key;
+            }
+            }
+    </pre>
+</code>
+
+<h1>Heap sort</h1>
+
+<p>Heap sort is a pretty efficient algorithm.
+
+<p>Average performance: <br>
+Worst case performance: <br>
+Best case performance: <br>
+
+
+<h1>Rank sort</h1>
+
+<p> This is a pretty simple working algorithm to implement, and as such is usually slow. The concept is pretty easy is understand: you go through each element of your array, and for each item, you compare and see how it ranks it terms of size. You count the number of items smaller. Then, you insert the item into a second array at that index.
+
+<p>Average performance:<br>
+Worst case performance:<br>
+Best case performance:
+
+<h3>Here's code in c to sort the data in descending order:</h3>
+
+<code>
+    <pre>
+        int spot;
+        int copy[problemSize];
+        for(int i = 0; i < problemSize; i++){
+            spot = 0;
+            for(int j = 0 ; j < problemSize; j++){
+            if(data[i] < data[j] && data[i] != data[j]){
+            spot++;
+            }
+            }
+            copy[spot] = data[i];
+            }
+            </pre>
+</code>
+
+<h3>... and here's code to put the data in ascending order:</h3>
+
+
+<h1>Selection Sort</h1>
+
+<p>Selection sort is a fairly simple sorting algorithm to implement.... But, if you run this on 50,000, you'll be waiting a while for it to complete.
+
+<p>Average performance:<br>
+Worst case performance:<br>
+Best case performance:
+
+<h3> Here's some code...</h3>
+
+<code>
+    <pre>
+        for(int i = 0; i < problemSize; i++){
+            choice = data[i];
+            original = choice;
+            next = i + 1;
+            
+            for(next; next < problemSize; next++){
+            if(data[next] < choice){
+            choice = data[next];
+            originalSpot = next;
+            }
+            }
+            
+            data[i] = choice;
+            data[originalSpot] = original;
+            }
+            </pre>
+</code>
+
+
+<h1>Merge sort</h1>
+
+<p>Merge sort uses recursion...
+
+<p>Average performance:<br>
+Worst case performance:<br>
+Best case performance:
