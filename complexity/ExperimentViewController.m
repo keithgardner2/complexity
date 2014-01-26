@@ -272,6 +272,58 @@ int choice, next, original, originalSpot;//used in selection sort
     heapsort(data, problemSize, sizeof(int), intCompare);
 }
 
+void merge(int *arr, int *tmp, int start, int mid, int end)
+{
+    int li = start;
+    int ri = mid;
+    int mi = 0;
+    
+    while(li < mid && ri < end)
+    {
+        if (arr[li] < arr[ri])
+        {
+            tmp[mi] = arr[li];
+            ++li;
+        }
+        else
+        {
+            tmp[mi] = arr[ri];
+            ++ri;
+        }
+        ++mi;
+    }
+    while(li < mid)
+    {
+        tmp[mi] = arr[li];
+        ++li;
+        ++mi;
+    }
+    while(ri < end)
+    {
+        tmp[mi] = arr[ri];
+        ++ri;
+        ++mi;
+    }
+    memcpy(arr + start, tmp, sizeof(int) * (end - start));
+}
+void mergesort_aux(int *arr, int *tmp, int start, int end){
+    if (end - start <= 1)
+    {
+        return;
+    }
+    int mid = (end + start) / 2;
+    mergesort_aux(arr, tmp, start, mid);
+    mergesort_aux(arr, tmp, mid, end);
+    merge(arr, tmp, start, mid, end);
+}
+
+void mergeSort(int *arr, int size){//needed to rename because c has its own merge sort
+    NSLog(@"mergeSort");
+    int *tmp = malloc(sizeof(int) * size);
+    mergesort_aux(arr, tmp, 0, size);
+    free(tmp);
+}
+
 -(void) debug{
     for(int i = 0; i< problemSize; i++){
         NSLog(@"%i", data[i]);
@@ -419,6 +471,7 @@ int lomuto_partition(int *arr, int start, int end, int pi)
             [self insertionSort];
             break;
         case 3:
+            mergeSort(data, problemSize);
             break;
         case 4:
             [self selectionSort];
@@ -499,8 +552,7 @@ int lomuto_partition(int *arr, int start, int end, int pi)
     // reset UI elements etc here
 }
 
--(void)createShield
-{
+-(void)createShield{
     if (runShield == nil)
     {
         UINib *nib;
