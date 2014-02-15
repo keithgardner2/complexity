@@ -71,6 +71,46 @@ bool equal = false;
 	// Do any additional setup after loading the view.
     [self nChange:nil];
     [elapsed setText:@"--"];
+    self.algColumn  = [[NSArray alloc]         initWithObjects:@"Quicksort Hoare",@"Quicksort Lomuto",@"Insertion Sort",@"Selection Sort",@"Rank Sort",@"Heap Sort", @"Merge Sort", @"Bubble Sort", nil];
+    
+    UIPickerView *myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(600, 200, 500, 200)];
+    myPickerView.delegate = self;
+    myPickerView.showsSelectionIndicator = YES;
+    NSLog(@"HI");
+    [self.view addSubview:myPickerView];
+    [self.view bringSubviewToFront:myPickerView];
+    [myPickerView setBackgroundColor:[UIColor whiteColor]];
+    
+
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow: (NSInteger)row inComponent:(NSInteger)component {
+    // Handle the selection
+}
+
+// tell the picker how many rows are available for a given component
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    NSUInteger numRows = 8;
+    
+    return numRows;
+}
+
+// tell the picker how many components it will have
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 2;
+}
+
+// tell the picker the title for a given component
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    
+    return _algColumn[row];
+}
+
+// tell the picker the width of each row for a given component
+- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
+    int sectionWidth = 100;
+    
+    return sectionWidth;
 }
 
 - (void)didReceiveMemoryWarning
@@ -583,6 +623,7 @@ int lomuto_partition(int *arr, int start, int end, int pi)
     [runShield removeFromSuperview];
     // [self setRunShield:nil];
 }
+
 -(IBAction)pickHTML:(id)sender{
     //htmlTag = [sender tag];
     

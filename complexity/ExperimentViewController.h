@@ -11,7 +11,7 @@
 #import "InfoViewController.h"
 #import "ComplexityGraph.h"
 
-@interface ExperimentViewController : UIViewController
+@interface ExperimentViewController : UIViewController <UIPickerViewDelegate>
 
 @property (nonatomic) BOOL running;
 @property (nonatomic) uint64_t startTime, stopTime;
@@ -31,6 +31,13 @@
 -(IBAction)runAlgorithm:(id)sender;
 -(IBAction)killRun:(id)sender;
 -(IBAction)nChange:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UILabel *testLabel;
+@property (weak, nonatomic) IBOutlet UIPickerView *picker;
+@property (strong, nonatomic)          NSArray *algColumn;
+
+
+
 
 // -(IBAction)cChange:(id)sender;
 
