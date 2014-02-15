@@ -71,12 +71,13 @@ bool equal = false;
 	// Do any additional setup after loading the view.
     [self nChange:nil];
     [elapsed setText:@"--"];
-    self.algColumn  = [[NSArray alloc]         initWithObjects:@"Quicksort Hoare",@"Quicksort Lomuto",@"Insertion Sort",@"Selection Sort",@"Rank Sort",@"Heap Sort", @"Merge Sort", @"Bubble Sort", nil];
     
-    UIPickerView *myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(600, 200, 500, 200)];
+    self.algColumn  = [[NSArray alloc]         initWithObjects:@"Quicksort Hoare",@"Quicksort Lomuto",@"Insertion Sort",@"Selection Sort",@"Rank Sort",@"Heap Sort", @"Merge Sort", @"Bubble Sort", nil];
+    self.optionsColumn = [[NSArray alloc] initWithObjects:@"Ascending", @"Descending", @"Values Equal", @"Randomization", nil];
+    
+    UIPickerView *myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(600, 200, 450, 200)];//good for iPad
     myPickerView.delegate = self;
     myPickerView.showsSelectionIndicator = YES;
-    NSLog(@"HI");
     [self.view addSubview:myPickerView];
     [self.view bringSubviewToFront:myPickerView];
     [myPickerView setBackgroundColor:[UIColor whiteColor]];
@@ -90,7 +91,11 @@ bool equal = false;
 
 // tell the picker how many rows are available for a given component
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    NSUInteger numRows = 8;
+    NSUInteger numRows;
+    if(component == 0)
+        numRows = 8;//8 algorithms currently
+    else
+        numRows = 4;//asc, desc, =, randomization
     
     return numRows;
 }
@@ -102,13 +107,19 @@ bool equal = false;
 
 // tell the picker the title for a given component
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    
-    return _algColumn[row];
+    if(component ==0)
+        return _algColumn[row];
+    else
+        return _optionsColumn[row];
 }
 
 // tell the picker the width of each row for a given component
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
-    int sectionWidth = 100;
+    int sectionWidth;
+    if(component == 0)
+        sectionWidth = 200;
+    else
+        sectionWidth = 200;
     
     return sectionWidth;
 }

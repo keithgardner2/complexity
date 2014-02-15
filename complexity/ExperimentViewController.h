@@ -32,9 +32,9 @@
 -(IBAction)killRun:(id)sender;
 -(IBAction)nChange:(id)sender;
 
-@property (weak, nonatomic) IBOutlet UILabel *testLabel;
 @property (weak, nonatomic) IBOutlet UIPickerView *picker;
 @property (strong, nonatomic)          NSArray *algColumn;
+@property (strong, nonatomic)          NSArray *optionsColumn;
 
 
 
