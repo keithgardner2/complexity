@@ -548,8 +548,9 @@ int lomuto_partition(int *arr, int start, int end, int pi)
             break;
         case 2://descending
             NSLog(@"making descending data");
-            for (i = problemSize; i > 0; --i)//check later. Test ouput all of these once this thing works.
-                data[i] = i;
+            for (i = 0; i < problemSize; i++)//999, 998...1,0.
+                data[problemSize - i -1] = i;
+            [self debug];
             NSLog(@"done making descending data");
             break;
         case 3://values =
