@@ -44,6 +44,9 @@ bool ascending = false;
 bool descending = false;
 bool equal = false;
 
+UIPickerView *myPickerView;
+UIPickerView *pickerOptions;
+
 @interface ExperimentViewController ()
 
 @end
@@ -72,17 +75,28 @@ bool equal = false;
     [self nChange:nil];
     [elapsed setText:@"--"];
     
-    self.algColumn  = [[NSArray alloc]         initWithObjects:@"Quicksort Hoare",@"Quicksort Lomuto",@"Insertion Sort",@"Selection Sort",@"Rank Sort",@"Heap Sort", @"Merge Sort", @"Bubble Sort", nil];
-    self.optionsColumn = [[NSArray alloc] initWithObjects:@"Ascending", @"Descending", @"Values Equal", @"Randomization", nil];
+    self.algColumn  = [[NSArray alloc]         initWithObjects:@"QS Hoare", @"QS Hoare Rand", @"QS Lomuto", @"QS Lomuto Rand",@"Insertion Sort",@"Selection Sort",@"Rank Sort",@"Heap Sort", @"Merge Sort", @"Bubble Sort", nil];
+    self.optionsColumn = [[NSArray alloc] initWithObjects:@"Random", @"Ascending", @"Descending", @"Values Equal", nil];
     
-    UIPickerView *myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(600, 200, 450, 200)];//good for iPad
+    myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(715, 130, 230, 150)];//good for iPad
+    pickerOptions= [[UIPickerView alloc] initWithFrame:CGRectMake(715, 330, 230, 200)];//height seems to be standard. at least on sumulator
+    myPickerView.tag = 0;
+    pickerOptions.tag = 1;
+    
     myPickerView.delegate = self;
-    myPickerView.showsSelectionIndicator = YES;
-    [self.view addSubview:myPickerView];
-    [self.view bringSubviewToFront:myPickerView];
-    [myPickerView setBackgroundColor:[UIColor whiteColor]];
+    pickerOptions.delegate = self;
     
-
+    myPickerView.showsSelectionIndicator = YES;
+    pickerOptions.showsSelectionIndicator = YES;
+    
+    [self.view addSubview:myPickerView];
+    [self.view addSubview:pickerOptions];
+    
+    [self.view bringSubviewToFront:myPickerView];
+    [self.view bringSubviewToFront:pickerOptions];
+    
+    [myPickerView setBackgroundColor:[UIColor whiteColor]];
+    [pickerOptions setBackgroundColor:[UIColor whiteColor]];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow: (NSInteger)row inComponent:(NSInteger)component {
@@ -92,32 +106,38 @@ bool equal = false;
 // tell the picker how many rows are available for a given component
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     NSUInteger numRows;
-    if(component == 0)
-        numRows = 8;//8 algorithms currently
-    else
-        numRows = 4;//asc, desc, =, randomization
+    
+    
+    if(pickerView.tag == 0){
+        numRows = 10;//8 algorithms currently
+    }
+    else{
+        numRows = 4;
+    }
     
     return numRows;
 }
 
 // tell the picker how many components it will have
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    return 2;
+    return 1;
 }
 
 // tell the picker the title for a given component
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    if(component ==0)
+    if(pickerView.tag ==0){
         return _algColumn[row];
-    else
+    }
+    else{
         return _optionsColumn[row];
+    }
 }
 
 // tell the picker the width of each row for a given component
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
     int sectionWidth;
-    if(component == 0)
-        sectionWidth = 200;
+    if(pickerView.tag == 0)
+        sectionWidth = 220;
     else
         sectionWidth = 200;
     
@@ -493,6 +513,16 @@ int lomuto_partition(int *arr, int start, int end, int pi)
 -(void)do_it
 {
     int i;
+    NSLog(@"Doing it!");
+    //---------------------check what picker view is at
+    NSInteger algTypePicker;
+    NSInteger optionType;
+    
+    algTypePicker = [myPickerView selectedRowInComponent:0];
+    optionType = [pickerOptions selectedRowInComponent:0];
+    NSLog(@"algType: %i", algTypePicker);
+    NSLog(@"optionType: %i", optionType);//this works nicely. Now switch over this... but first data organization.
+
     
     data = (int *)malloc(sizeof(int) * problemSize);//This sets data to a bunch of random numbers
     
@@ -502,9 +532,68 @@ int lomuto_partition(int *arr, int start, int end, int pi)
         return;
     }
     
-    for (i = 0; i < problemSize; ++i)
-        data[i] = rand();
+    switch(optionType){//takes care of second uipicker
+        case 0://random, as is
+            for (i = 0; i < problemSize; ++i)
+                data[i] = rand();
+            break;
+        case 1://ascending
+            for (i = 0; i < problemSize; ++i)
+                data[i] = i;
+            break;
+        case 2://descending
+            for (i = problemSize; i > 0; --i)//check later. Test ouput all of these once this thing works.
+                data[i] = i;
+            break;
+        case 3://values =
+            for (i = 0; i < problemSize; ++i)
+                data[i] = 25;
+            break;
+    }
     
+    //now take care of first uipicker...
+    switch(algTypePicker){
+        case 0://qs hoare
+            NSLog(@"hoare");
+            quicksort_hoare_norand(data, 0, problemSize-1);
+            break;
+        case 1:
+            NSLog(@"hoare rand");
+            quicksort_hoare_rand(data, 0, problemSize-1);
+            break;//qs hoare rand
+        case 2://sq lomuto
+            NSLog(@"lomuto");
+            quicksort_lomuto_norand(data, 0, problemSize-1);
+            break;
+        case 3://qs lomuto rand
+            NSLog(@"lomuto rand");
+            quicksort_lomuto_rand(data, 0, problemSize-1);
+            break;
+        case 4://insertion
+            NSLog(@"insertion");
+            [self insertionSort];
+            break;
+        case 5://selection
+            NSLog(@"selection");
+            [self selectionSort];
+            break;
+        case 6://rank--is this broke on my iPhone?
+            NSLog(@"rank");
+            [self rankSort];
+            break;
+        case 7://heap
+            [self heapSort];
+            break;
+        case 8://merge
+            mergeSort(data, problemSize);
+            break;
+        case 9://bubble
+            [self bubbleSort];
+            break;
+            
+        
+    }
+    /*
     switch (algType)
     {
         case 0:
@@ -542,6 +631,7 @@ int lomuto_partition(int *arr, int start, int end, int pi)
                 quicksort_lomuto_norand(data, 0, problemSize-1);}
             break;
     }
+    */
     
     if (LDBG) NSLog(@"Ending.");
     

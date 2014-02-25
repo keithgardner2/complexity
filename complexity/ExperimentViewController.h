@@ -32,7 +32,8 @@
 -(IBAction)killRun:(id)sender;
 -(IBAction)nChange:(id)sender;
 
-@property (weak, nonatomic) IBOutlet UIPickerView *picker;
+@property (weak, nonatomic) IBOutlet UIPickerView *myPickerView;
+@property (weak, nonatomic) IBOutlet UIPickerView *pickerOptions;
 @property (strong, nonatomic)          NSArray *algColumn;
 @property (strong, nonatomic)          NSArray *optionsColumn;
 
