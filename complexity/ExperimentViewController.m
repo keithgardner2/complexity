@@ -312,7 +312,7 @@ int choice, next, original, originalSpot;//used in selection sort
 }
 -(void)rankSort{//still need to implement !shouldRun or something in inner most loop
     //NSLog(@"running debug before");
-    //[self debug];
+    [self debug];
     
     //NSLog(@"running rank sort...");
     
@@ -533,14 +533,17 @@ int lomuto_partition(int *arr, int start, int end, int pi)
     switch(optionType){//takes care of second uipicker
         case 0://random, as is
             NSLog(@"making random data");
+            //[self debug];
             for (i = 0; i < problemSize; ++i)
                 data[i] = rand();
             NSLog(@"done making random data");
+            [self debug];
             break;
         case 1://ascending
             NSLog(@"making ascending data");
-            for (i = 0; i < problemSize; ++i)
+            for (i = 0; i < problemSize; ++i)//0,1,2,3,4,5,...1000
                 data[i] = i;
+            [self debug];
             NSLog(@"done making ascending data");
             break;
         case 2://descending
@@ -561,43 +564,53 @@ int lomuto_partition(int *arr, int start, int end, int pi)
     switch(algTypePicker){
         case 0://qs hoare
             NSLog(@"hoare");
-            quicksort_hoare_norand(data, 0, problemSize-1);
+            quicksort_hoare_norand(data, 0, problemSize-1);//tested on random, ascending
+            [self debug];                                   //need to fix stop button?
             break;
         case 1:
             NSLog(@"hoare rand");
-            quicksort_hoare_rand(data, 0, problemSize-1);
+            quicksort_hoare_rand(data, 0, problemSize-1);//tested on random, ascending
+            [self debug];
             break;//qs hoare rand
         case 2://sq lomuto
             NSLog(@"lomuto");
-            quicksort_lomuto_norand(data, 0, problemSize-1);
+            quicksort_lomuto_norand(data, 0, problemSize-1);//tested on random, ascending
+            [self debug];
             break;
         case 3://qs lomuto rand
             NSLog(@"lomuto rand");
-            quicksort_lomuto_rand(data, 0, problemSize-1);
+            quicksort_lomuto_rand(data, 0, problemSize-1);//tested on random, ascending
+            [self debug];
             break;
         case 4://insertion
-            NSLog(@"insertion");
+            NSLog(@"insertion");//tested on random, ascending
             [self insertionSort];
+            [self debug];
             break;
         case 5://selection
-            NSLog(@"selection");
+            NSLog(@"selection");//tested on random, ascending
             [self selectionSort];
+            [self debug];
             break;
-        case 6://rank--is this broke on my iPhone?
+        case 6://rank
             NSLog(@"rank");
             [self rankSort];
+            [self debug];//this is BROKE
             break;
         case 7://heap
             NSLog(@"heap");
-            [self heapSort];
+            [self heapSort];//tested on random, ascending
+            [self debug];
             break;
         case 8://merge
             NSLog(@"merge");
-            mergeSort(data, problemSize);
+            mergeSort(data, problemSize);//tested on random, ascending
+            [self debug];
             break;
         case 9://bubble
             NSLog(@"bubble");
-            [self bubbleSort];
+            [self bubbleSort];//tested on random, ascending
+            [self debug];
             break;
             
         
