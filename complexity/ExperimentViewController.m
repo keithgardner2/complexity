@@ -513,15 +513,13 @@ int lomuto_partition(int *arr, int start, int end, int pi)
 -(void)do_it
 {
     int i;
-    NSLog(@"Doing it!");
-    //---------------------check what picker view is at
     NSInteger algTypePicker;
     NSInteger optionType;
     
     algTypePicker = [myPickerView selectedRowInComponent:0];
     optionType = [pickerOptions selectedRowInComponent:0];
-    NSLog(@"algType: %i", algTypePicker);
-    NSLog(@"optionType: %i", optionType);//this works nicely. Now switch over this... but first data organization.
+    //NSLog(@"algType: %i", algTypePicker);
+    //NSLog(@"optionType: %i", optionType);
 
     
     data = (int *)malloc(sizeof(int) * problemSize);//This sets data to a bunch of random numbers
@@ -534,20 +532,28 @@ int lomuto_partition(int *arr, int start, int end, int pi)
     
     switch(optionType){//takes care of second uipicker
         case 0://random, as is
+            NSLog(@"making random data");
             for (i = 0; i < problemSize; ++i)
                 data[i] = rand();
+            NSLog(@"done making random data");
             break;
         case 1://ascending
+            NSLog(@"making ascending data");
             for (i = 0; i < problemSize; ++i)
                 data[i] = i;
+            NSLog(@"done making ascending data");
             break;
         case 2://descending
+            NSLog(@"making descending data");
             for (i = problemSize; i > 0; --i)//check later. Test ouput all of these once this thing works.
                 data[i] = i;
+            NSLog(@"done making descending data");
             break;
         case 3://values =
+            NSLog(@"making = data");
             for (i = 0; i < problemSize; ++i)
                 data[i] = 25;
+            NSLog(@"done making = data");
             break;
     }
     
@@ -582,12 +588,15 @@ int lomuto_partition(int *arr, int start, int end, int pi)
             [self rankSort];
             break;
         case 7://heap
+            NSLog(@"heap");
             [self heapSort];
             break;
         case 8://merge
+            NSLog(@"merge");
             mergeSort(data, problemSize);
             break;
         case 9://bubble
+            NSLog(@"bubble");
             [self bubbleSort];
             break;
             
@@ -740,6 +749,14 @@ int lomuto_partition(int *arr, int start, int end, int pi)
 -(void)resetHTMLTag{
     html = -1;
 }
+
+
+
+
+
+
+
+//get rid of this, comment then test functionality
 - (IBAction)toggleAscending:(id)sender {
     NSLog(@"toggling ascending...");
     ascending = !ascending;
