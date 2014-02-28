@@ -78,8 +78,25 @@ UIPickerView *pickerOptions;
     self.algColumn  = [[NSArray alloc]         initWithObjects:@"QS Hoare", @"QS Hoare Rand", @"QS Lomuto", @"QS Lomuto Rand",@"Insertion Sort",@"Selection Sort",@"Rank Sort",@"Heap Sort", @"Merge Sort", @"Bubble Sort", nil];
     self.optionsColumn = [[NSArray alloc] initWithObjects:@"Random", @"Ascending", @"Descending", @"Values Equal", nil];
     
-    myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(715, 130, 230, 150)];//good for iPad
-    pickerOptions= [[UIPickerView alloc] initWithFrame:CGRectMake(715, 330, 230, 200)];//height seems to be standard. at least on sumulator
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){
+        CGSize iOSDeviceScreenSize = [[UIScreen mainScreen] bounds].size;
+        if(iOSDeviceScreenSize.height  == 568){
+            NSLog(@"Loading 4 inch storyboard");
+            myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(350, 50, 150, 162.0)];
+            pickerOptions= [[UIPickerView alloc] initWithFrame:CGRectMake(400, 50, 150, 162.0)];
+        }
+        if(iOSDeviceScreenSize.height  == 480){
+            NSLog(@"Loading 3.5 inch");
+            myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(350, 50, 60, 162.0)];
+            pickerOptions= [[UIPickerView alloc] initWithFrame:CGRectMake(400, 50, 60, 162.0)];
+        }
+    }
+    else{
+        myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(715, 130, 230, 150)];//good for iPad
+        pickerOptions= [[UIPickerView alloc] initWithFrame:CGRectMake(715, 330, 230, 200)];//height seems to be standard. at least on sumulator
+    }
+    
+    
     myPickerView.tag = 0;
     pickerOptions.tag = 1;
     
@@ -94,10 +111,13 @@ UIPickerView *pickerOptions;
     
     [self.view bringSubviewToFront:myPickerView];
     [self.view bringSubviewToFront:pickerOptions];
+
     
-    [myPickerView setBackgroundColor:[UIColor whiteColor]];
-    [pickerOptions setBackgroundColor:[UIColor whiteColor]];
+    //[myPickerView setC
+    //[myPickerView setBackgroundColor:[UIColor whiteColor]];
+    //[pickerOptions setBackgroundColor:[UIColor whiteColor]];
 }
+
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow: (NSInteger)row inComponent:(NSInteger)component {
     // Handle the selection
