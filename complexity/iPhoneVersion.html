@@ -11,35 +11,35 @@ Best Case: O(n log n)
 <code>
     <pre>
         void quicksort_hoare_norand(int *arr, int start, int end){
-        if (start >= end){
-        return;
-        }
+            if (start >= end){
+                return;
+            }
         
-        int p = hoare_partition(arr, start, end, start);
-        quicksort_hoare_norand(arr, start, p);
-        quicksort_hoare_norand(arr, p+1, end);
+            int p = hoare_partition(arr, start, end, start);
+            quicksort_hoare_norand(arr, start, p);
+            quicksort_hoare_norand(arr, p+1, end);
         }
         
         int hoare_partition(int *arr, int start, int end, int pi){
-        int i = start-1;
-        int j = end+1;
-        int pv = arr[pi];
+            int i = start-1;
+            int j = end+1;
+            int pv = arr[pi];
         
-        while(1){
-        if (global_kill_flag){
-        exit(1);
+            while(1){
+                if (global_kill_flag){
+                    exit(1);
+                }
+        
+                while(arr[++i] < pv);
+                while(arr[--j] > pv);
+                    if (i < j){
+                        SWAP(arr, i, j);
+                    }
+                    else{
+                        return j;
+                    }
+            }
         }
-        
-        while(arr[++i] < pv);
-            while(arr[--j] > pv);
-            if (i < j){
-                SWAP(arr, i, j);
-                }
-                else{
-                return j;
-                }
-                }
-                }
                 
                 </pre>
 </code>
@@ -49,14 +49,43 @@ Best Case: O(n log n)
 <code>
     <pre>
         void quicksort_hoare_rand(int *arr, int start, int end){
-        if (start >= end){
-        return;
+            if (start >= end){
+                return;
+            }
+        
+            int p = hoare_partition(arr, start, end, RAND_RANGE(start, end));
+            quicksort_hoare_rand(arr, start, p);
+            quicksort_hoare_rand(arr, p+1, end);
         }
         
-        int p = hoare_partition(arr, start, end, RAND_RANGE(start, end));
-        quicksort_hoare_rand(arr, start, p);
-        quicksort_hoare_rand(arr, p+1, end);
+        int hoare_partition(int *arr, int start, int end, int pi){
+            int i = start-1;
+            int j = end+1;
+            int pv = arr[pi];
+        
+            while(1){
+                if (global_kill_flag){
+                    exit(1);
+                }
+        
+                while(arr[++i] < pv);
+                while(arr[--j] > pv);
+                    if (i < j){
+                        SWAP(arr, i, j);
+                    }
+                    else{
+                        return j;
+                    }
+            }
         }
+        
+        #define SWAP(arr, x, y)     \
+        do {                    \
+            int t = arr[x];     \
+            arr[x] = arr[y];    \
+            arr[y] = t;         \
+        } while(0);
+        
     </pre>
 </code>
 
@@ -75,36 +104,43 @@ Best Case: O(n log n)<br>
 <code>
     <pre>
         void quicksort_lomuto_norand(int *arr, int start, int end){
-        if (start >= end){
-        return;
-        }
+            if (start >= end){
+                return;
+            }
         
-        int p = lomuto_partition(arr, start, end, start);
-        quicksort_lomuto_norand(arr, start, p-1);
-        quicksort_lomuto_norand(arr, p+1, end);
+            int p = lomuto_partition(arr, start, end, start);
+            quicksort_lomuto_norand(arr, start, p-1);
+            quicksort_lomuto_norand(arr, p+1, end);
         }
         
         
         int lomuto_partition(int *arr, int start, int end, int pi){
-        int pv = arr[pi];
-        int si = start;
+            int pv = arr[pi];
+            int si = start;
         
-        SWAP(arr, pi, end);
+            SWAP(arr, pi, end);
         
-        for (int i = start; i < end; ++i){
-            if (global_kill_flag){
-            exit(1);
-            }
+            for (int i = start; i < end; ++i){
+                if (global_kill_flag){
+                    exit(1);
+                    }
             
-            if (arr[i] <= pv){
-            SWAP(arr, si, i);
-            ++si;
-            }
+                if (arr[i] <= pv){
+                    SWAP(arr, si, i);
+                    ++si;
+                }
             }
             
             SWAP(arr, si, end);
             return si;
-            }
+        }
+        
+        #define SWAP(arr, x, y)     \
+        do {                    \
+            int t = arr[x];     \
+            arr[x] = arr[y];    \
+            arr[y] = t;         \
+        } while(0);
             
             
             </pre>
@@ -115,14 +151,43 @@ Best Case: O(n log n)<br>
 <code>
     <pre>
         void quicksort_lomuto_rand(int *arr, int start, int end){
-        if (start >= end){
-        return;
+            if (start >= end){
+                return;
+                }
+        
+            int p = lomuto_partition(arr, start, end, RAND_RANGE(start, end));
+            quicksort_lomuto_rand(arr, start, p-1);
+            quicksort_lomuto_rand(arr, p+1, end);
         }
         
-        int p = lomuto_partition(arr, start, end, RAND_RANGE(start, end));
-        quicksort_lomuto_rand(arr, start, p-1);
-        quicksort_lomuto_rand(arr, p+1, end);
+        int lomuto_partition(int *arr, int start, int end, int pi){
+            int pv = arr[pi];
+            int si = start;
+        
+            SWAP(arr, pi, end);
+        
+            for (int i = start; i < end; ++i){
+                if (global_kill_flag){
+                    exit(1);
+                    }
+            
+                if (arr[i] <= pv){
+                    SWAP(arr, si, i);
+                    ++si;
+                    }
+            }
+            
+            SWAP(arr, si, end);
+            return si;
         }
+        
+        #define SWAP(arr, x, y)     \
+        do {                    \
+            int t = arr[x];     \
+            arr[x] = arr[y];    \
+            arr[y] = t;         \
+        } while(0);
+            
     </pre>
 </code>
 
@@ -140,17 +205,17 @@ Best Case performance: O(n)
 <code>
     <pre>
         -(void)bubbleSort{
-        int i, j;
-        for (i = 0; i < problemSize; ++i){
-            for (j = i + 1; j < problemSize; ++j){
-            if (data[i] > data[j]){
-            int t = data[i];
-            data[i] = data[j];
-            data[j] = t;
+            int i, j;
+            for (i = 0; i < problemSize; ++i){
+                for (j = i + 1; j < problemSize; ++j){
+                    if (data[i] > data[j]){
+                        int t = data[i];
+                        data[i] = data[j];
+                        data[j] = t;
+                    }
+                }
             }
-            }
-            }
-            }
+        }
     </pre>
 </code>
 
@@ -168,17 +233,17 @@ Best case performance: O(n)
 <code>
     <pre>
         -(void)insertionSort{
-        int j, i, key;
-        for(j = 1; j < problemSize; j++){
-            key = data[j];
-            i = j -1;
-            while(i > 0 && data[i] > key){
-            data[i + 1] = data[i];
-            i = i -1;
+            int j, i, key;
+            for(j = 1; j < problemSize; j++){
+                key = data[j];
+                i = j -1;
+                while(i > 0 && data[i] > key){
+                    data[i + 1] = data[i];
+                    i = i -1;
+                }
+                data[i + 1] = key;
             }
-            data[i + 1] = key;
-            }
-            }
+        }
     </pre>
 </code>
 
@@ -203,17 +268,19 @@ Best case performance:
 
 <code>
     <pre>
-        int spot;
-        int copy[problemSize];
-        for(int i = 0; i < problemSize; i++){
-            spot = 0;
-            for(int j = 0 ; j < problemSize; j++){
-            if(data[i] < data[j] && data[i] != data[j]){
-            spot++;
+        -(void)rankSort{
+            int spot;
+            int copy[problemSize];
+            for(int i = 0; i < problemSize; i++){
+                spot = 0;
+                for(int j = 0 ; j < problemSize; j++){
+                    if(data[i] < data[j] && data[i] != data[j]){
+                    spot++;
+                    }
+                }
+                copy[spot] = data[i];
             }
-            }
-            copy[spot] = data[i];
-            }
+        }
             </pre>
 </code>
 
@@ -232,21 +299,27 @@ Best case performance:
 
 <code>
     <pre>
-        for(int i = 0; i < problemSize; i++){
-            choice = data[i];
-            original = choice;
-            next = i + 1;
+        -(void)selectionSort{
+            for(int i = 0; i < problemSize; i++){
+                choice = data[i];
+                original = choice;
+                next = i + 1;
+                for(next; next < problemSize; next++){
+                    if (!shouldRun){
+                        problemSize = 1;
+                        continue;
+                    }
             
-            for(next; next < problemSize; next++){
-            if(data[next] < choice){
-            choice = data[next];
-            originalSpot = next;
-            }
-            }
+                    if(data[next] < choice){
+                        choice = data[next];
+                        originalSpot = next;
+                    }
             
+                }
             data[i] = choice;
             data[originalSpot] = original;
             }
+        }
             </pre>
 </code>
 
@@ -258,3 +331,56 @@ Best case performance:
 <p>Average performance:<br>
 Worst case performance:<br>
 Best case performance:
+
+<h3>Here's merge sort in c:</h3>
+
+<code>
+    <pre>
+        void mergeSort(int *arr, int size){
+            int *tmp = malloc(sizeof(int) * size);
+            mergesort_aux(arr, tmp, 0, size);
+            free(tmp);
+        }
+        
+        void mergesort_aux(int *arr, int *tmp, int start, int end){
+            if (end - start <= 1){
+                return;
+            }
+            int mid = (end + start) / 2;
+            mergesort_aux(arr, tmp, start, mid);
+            mergesort_aux(arr, tmp, mid, end);
+            merge(arr, tmp, start, mid, end);
+        }
+        
+        void merge(int *arr, int *tmp, int start, int mid, int end){
+            int li = start;
+            int ri = mid;
+            int mi = 0;
+        
+            while(li < mid && ri < end){
+                if (arr[li] < arr[ri]){
+                    tmp[mi] = arr[li];
+                    ++li;
+                }
+                else{
+                    tmp[mi] = arr[ri];
+                    ++ri;
+                }
+                ++mi;
+            }
+            while(li < mid){
+                tmp[mi] = arr[li];
+                ++li;
+                ++mi;
+            }
+            while(ri < end){
+                tmp[mi] = arr[ri];
+                ++ri;
+                ++mi;
+            }
+            memcpy(arr + start, tmp, sizeof(int) * (end - start));
+        }
+            
+
+            </pre>
+</code>

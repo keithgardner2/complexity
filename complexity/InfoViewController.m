@@ -58,38 +58,6 @@ int html = -1;
 
         NSLog(@"%i", html);
         switch (html){
-            case 0:
-                NSLog(@"bubbleSort HTML");
-                [wv loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"bubble" ofType:@"html"] isDirectory:NO]]];
-                break;
-            case 1://hoare
-                NSLog(@"quickSort hoare HTML");
-                [wv loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"quickSortHoare" ofType:@"html"] isDirectory:NO]]];
-                break;
-            case 2:
-                NSLog(@"insertionSort HTML");
-                [wv loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"insertion" ofType:@"html"] isDirectory:NO]]];
-                break;
-            case 3:
-                NSLog(@"merge sort HMTL");
-                [wv loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"merge" ofType:@"html"] isDirectory:NO]]];
-                break;
-            case 4:
-                NSLog(@"selectionSort HTML");
-                [wv loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"selection" ofType:@"html"] isDirectory:NO]]];
-                break;
-            case 5:
-                NSLog(@"rankSort HTML");
-                [wv loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"rank" ofType:@"html"] isDirectory:NO]]];
-                break;
-            case 6:
-                NSLog(@"heapSort HTML");
-                [wv loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"heap" ofType:@"html"] isDirectory:NO]]];
-                break;
-            case 7:
-                NSLog(@"quickSort Lomuto HTML");
-                [wv loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"quickSortLomuto" ofType:@"html"] isDirectory:NO]]];
-                break;
             case 8:
                 NSLog(@"iPhone storyboard in case");
                 [wv loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"iPhoneVersion" ofType:@"html"] isDirectory:NO]]];

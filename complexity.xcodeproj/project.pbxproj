@@ -10,7 +10,6 @@
 		74781652186E844E009CE8B9 /* cambodia.png in Resources */ = {isa = PBXBuildFile; fileRef = 74781651186E844E009CE8B9 /* cambodia.png */; };
 		74781655186E8A16009CE8B9 /* ComplexityGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74781654186E8A16009CE8B9 /* ComplexityGraphViewController.m */; };
 		74781657186E8D5A009CE8B9 /* complexity.html in Resources */ = {isa = PBXBuildFile; fileRef = 74781656186E8D5A009CE8B9 /* complexity.html */; };
-		7478165B186E9268009CE8B9 /* bubble.html in Resources */ = {isa = PBXBuildFile; fileRef = 7478165A186E9268009CE8B9 /* bubble.html */; };
 		7478165D186F3AC2009CE8B9 /* definitions.png in Resources */ = {isa = PBXBuildFile; fileRef = 7478165C186F3AC2009CE8B9 /* definitions.png */; };
 		7478165F186F411E009CE8B9 /* basics.html in Resources */ = {isa = PBXBuildFile; fileRef = 7478165E186F411E009CE8B9 /* basics.html */; };
 		74781661186F72BB009CE8B9 /* cambodia-header.png in Resources */ = {isa = PBXBuildFile; fileRef = 74781660186F72BB009CE8B9 /* cambodia-header.png */; };
@@ -34,17 +33,10 @@
 		74FBB810185417BA00E275A5 /* complexityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FBB80F185417BA00E275A5 /* complexityTests.m */; };
 		74FBB81B1854188600E275A5 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FBB81A1854188600E275A5 /* InfoViewController.m */; };
 		74FBB81E18541B7B00E275A5 /* ExperimentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FBB81D18541B7B00E275A5 /* ExperimentViewController.m */; };
-		E131EEFD1890255100CF7366 /* selection.html in Resources */ = {isa = PBXBuildFile; fileRef = E131EEFC1890255100CF7366 /* selection.html */; };
-		E131EEFF1890257700CF7366 /* rank.html in Resources */ = {isa = PBXBuildFile; fileRef = E131EEFE1890257700CF7366 /* rank.html */; };
-		E131EF011890259600CF7366 /* heap.html in Resources */ = {isa = PBXBuildFile; fileRef = E131EF001890259600CF7366 /* heap.html */; };
-		E131EF03189025A800CF7366 /* insertion.html in Resources */ = {isa = PBXBuildFile; fileRef = E131EF02189025A800CF7366 /* insertion.html */; };
 		E1366D41187F6E9A001402F5 /* EVC_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1366D40187F6E9A001402F5 /* EVC_iPhone.xib */; };
 		E1366D43187F720F001402F5 /* EVC_iPhone4inch.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1366D42187F720F001402F5 /* EVC_iPhone4inch.xib */; };
 		E148F9BD1893017A0051CF63 /* iPhoneVersion.html in Resources */ = {isa = PBXBuildFile; fileRef = E148F9BC1893017A0051CF63 /* iPhoneVersion.html */; };
 		E19C026C187EED2E001B6DEE /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E19C026B187EED2E001B6DEE /* Main_iPhone.storyboard */; };
-		E1FDFC0818918F4C0029CD32 /* merge.html in Resources */ = {isa = PBXBuildFile; fileRef = E1FDFC0718918F4C0029CD32 /* merge.html */; };
-		E1FDFC0A1891A6FB0029CD32 /* quickSortHoare.html in Resources */ = {isa = PBXBuildFile; fileRef = E1FDFC091891A6FB0029CD32 /* quickSortHoare.html */; };
-		E1FDFC0C1891A70F0029CD32 /* quickSortLomuto.html in Resources */ = {isa = PBXBuildFile; fileRef = E1FDFC0B1891A70F0029CD32 /* quickSortLomuto.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +54,6 @@
 		74781653186E8A16009CE8B9 /* ComplexityGraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComplexityGraphViewController.h; sourceTree = "<group>"; };
 		74781654186E8A16009CE8B9 /* ComplexityGraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComplexityGraphViewController.m; sourceTree = "<group>"; };
 		74781656186E8D5A009CE8B9 /* complexity.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = complexity.html; sourceTree = "<group>"; };
-		7478165A186E9268009CE8B9 /* bubble.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = bubble.html; sourceTree = "<group>"; };
 		7478165C186F3AC2009CE8B9 /* definitions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = definitions.png; path = Graphics/Source/definitions.png; sourceTree = "<group>"; };
 		7478165E186F411E009CE8B9 /* basics.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = basics.html; sourceTree = "<group>"; };
 		74781660186F72BB009CE8B9 /* cambodia-header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cambodia-header.png"; path = "Graphics/Source/cambodia-header.png"; sourceTree = "<group>"; };
@@ -94,17 +85,10 @@
 		74FBB81A1854188600E275A5 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
 		74FBB81C18541B7B00E275A5 /* ExperimentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExperimentViewController.h; sourceTree = "<group>"; };
 		74FBB81D18541B7B00E275A5 /* ExperimentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExperimentViewController.m; sourceTree = "<group>"; };
-		E131EEFC1890255100CF7366 /* selection.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = selection.html; sourceTree = "<group>"; };
-		E131EEFE1890257700CF7366 /* rank.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = rank.html; sourceTree = "<group>"; };
-		E131EF001890259600CF7366 /* heap.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = heap.html; sourceTree = "<group>"; };
-		E131EF02189025A800CF7366 /* insertion.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = insertion.html; sourceTree = "<group>"; };
 		E1366D40187F6E9A001402F5 /* EVC_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EVC_iPhone.xib; sourceTree = "<group>"; };
 		E1366D42187F720F001402F5 /* EVC_iPhone4inch.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EVC_iPhone4inch.xib; sourceTree = "<group>"; };
 		E148F9BC1893017A0051CF63 /* iPhoneVersion.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = iPhoneVersion.html; sourceTree = "<group>"; };
 		E19C026B187EED2E001B6DEE /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
-		E1FDFC0718918F4C0029CD32 /* merge.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = merge.html; sourceTree = "<group>"; };
-		E1FDFC091891A6FB0029CD32 /* quickSortHoare.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = quickSortHoare.html; sourceTree = "<group>"; };
-		E1FDFC0B1891A70F0029CD32 /* quickSortLomuto.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = quickSortLomuto.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,16 +120,8 @@
 			children = (
 				74ABFF3B186E2CFC006BBC6D /* about.html */,
 				E148F9BC1893017A0051CF63 /* iPhoneVersion.html */,
-				E1FDFC0718918F4C0029CD32 /* merge.html */,
-				E131EEFC1890255100CF7366 /* selection.html */,
-				E131EEFE1890257700CF7366 /* rank.html */,
-				E131EF001890259600CF7366 /* heap.html */,
-				E131EF02189025A800CF7366 /* insertion.html */,
 				7478165E186F411E009CE8B9 /* basics.html */,
 				74781656186E8D5A009CE8B9 /* complexity.html */,
-				E1FDFC0B1891A70F0029CD32 /* quickSortLomuto.html */,
-				E1FDFC091891A6FB0029CD32 /* quickSortHoare.html */,
-				7478165A186E9268009CE8B9 /* bubble.html */,
 			);
 			name = Docs;
 			sourceTree = "<group>";
@@ -328,27 +304,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1FDFC0A1891A6FB0029CD32 /* quickSortHoare.html in Resources */,
 				74781663186F9F88009CE8B9 /* EVC_iPad.xib in Resources */,
 				74781657186E8D5A009CE8B9 /* complexity.html in Resources */,
 				74FBB7F8185417B900E275A5 /* Main_iPad.storyboard in Resources */,
 				7478165D186F3AC2009CE8B9 /* definitions.png in Resources */,
-				E1FDFC0C1891A70F0029CD32 /* quickSortLomuto.html in Resources */,
 				E148F9BD1893017A0051CF63 /* iPhoneVersion.html in Resources */,
-				E1FDFC0818918F4C0029CD32 /* merge.html in Resources */,
 				74781661186F72BB009CE8B9 /* cambodia-header.png in Resources */,
 				7478165F186F411E009CE8B9 /* basics.html in Resources */,
 				74FBB7FD185417B900E275A5 /* Images.xcassets in Resources */,
-				E131EEFD1890255100CF7366 /* selection.html in Resources */,
-				7478165B186E9268009CE8B9 /* bubble.html in Resources */,
-				E131EEFF1890257700CF7366 /* rank.html in Resources */,
 				74781652186E844E009CE8B9 /* cambodia.png in Resources */,
-				E131EF03189025A800CF7366 /* insertion.html in Resources */,
 				E1366D43187F720F001402F5 /* EVC_iPhone4inch.xib in Resources */,
 				74FBB7F5185417B900E275A5 /* Main_iPhone3point5.storyboard in Resources */,
 				74ABFF3C186E2CFC006BBC6D /* about.html in Resources */,
 				E19C026C187EED2E001B6DEE /* Main_iPhone.storyboard in Resources */,
-				E131EF011890259600CF7366 /* heap.html in Resources */,
 				74FBB7EC185417B900E275A5 /* InfoPlist.strings in Resources */,
 				E1366D41187F6E9A001402F5 /* EVC_iPhone.xib in Resources */,
 			);

@@ -114,8 +114,8 @@ UIPickerView *pickerOptions;
 
     
     //[myPickerView setC
-    //[myPickerView setBackgroundColor:[UIColor whiteColor]];
-    //[pickerOptions setBackgroundColor:[UIColor whiteColor]];
+    [myPickerView setBackgroundColor:[UIColor whiteColor]];
+    [pickerOptions setBackgroundColor:[UIColor whiteColor]];
 }
 
 
@@ -358,6 +358,7 @@ int choice, next, original, originalSpot;//used in selection sort
     //}
     
 }
+
 -(void)heapSort{
     NSLog(@"Running heap sort");
     heapsort(data, problemSize, sizeof(int), intCompare);
@@ -397,6 +398,7 @@ void merge(int *arr, int *tmp, int start, int mid, int end)
     }
     memcpy(arr + start, tmp, sizeof(int) * (end - start));
 }
+
 void mergesort_aux(int *arr, int *tmp, int start, int end){
     if (end - start <= 1)
     {
@@ -408,7 +410,7 @@ void mergesort_aux(int *arr, int *tmp, int start, int end){
     merge(arr, tmp, start, mid, end);
 }
 
-void mergeSort(int *arr, int size){//needed to rename because c has its own merge sort
+void mergeSort(int *arr, int size){
     NSLog(@"mergeSort");
     int *tmp = malloc(sizeof(int) * size);
     mergesort_aux(arr, tmp, 0, size);
@@ -575,9 +577,11 @@ int lomuto_partition(int *arr, int start, int end, int pi)
             break;
         case 3://values =
             NSLog(@"making = data");
-            for (i = 0; i < problemSize; ++i)
+            for (i = 0; i < problemSize; ++i){
                 data[i] = 25;
+            }
             NSLog(@"done making = data");
+            [self debug];
             break;
     }
     
@@ -636,46 +640,6 @@ int lomuto_partition(int *arr, int start, int end, int pi)
             
         
     }
-    /*
-    switch (algType)
-    {
-        case 0:
-            [self bubbleSort];
-            break;
-        case 1://hoare
-            if(randomization){//this is false by default, gets set in toggleRandomization
-                NSLog(@"hoare rand");
-                quicksort_hoare_rand(data, 0, problemSize-1);}
-            else{
-                NSLog(@"hoare not rand");
-                quicksort_hoare_norand(data, 0, problemSize-1);}
-            break;
-        case 2:
-            [self insertionSort];
-            break;
-        case 3:
-            mergeSort(data, problemSize);
-            break;
-        case 4:
-            [self selectionSort];
-            break;
-        case 5:
-            [self rankSort];
-            break;
-        case 6:
-            [self heapSort];
-            break;
-        case 7://quicksort lomuto
-            if(randomization){//this is false by default, gets set in toggleRandomization
-                NSLog(@"lomuto rand");
-                quicksort_lomuto_rand(data, 0, problemSize-1);}
-            else{
-                NSLog(@"lomuto not rand");
-                quicksort_lomuto_norand(data, 0, problemSize-1);}
-            break;
-    }
-    */
-    
     if (LDBG) NSLog(@"Ending.");
     
     free(data);
@@ -770,11 +734,8 @@ int lomuto_partition(int *arr, int start, int end, int pi)
 
 -(IBAction)pickHTML:(id)sender{
     //htmlTag = [sender tag];
-    
     html = [sender tag]; // Just an example
-    
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-    
     if (standardUserDefaults) {
         [standardUserDefaults setObject:[NSNumber numberWithInt:html] forKey:@"age"];
         [standardUserDefaults synchronize];
@@ -782,28 +743,5 @@ int lomuto_partition(int *arr, int start, int end, int pi)
 }
 -(void)resetHTMLTag{
     html = -1;
-}
-
-
-
-
-
-
-
-//get rid of this, comment then test functionality
-- (IBAction)toggleAscending:(id)sender {
-    NSLog(@"toggling ascending...");
-    ascending = !ascending;
-}
-- (IBAction)toggleDescending:(id)sender {
-    NSLog(@"toggling descending...");
-    descending = !descending;
-}
-- (IBAction)toggleValuesEqual:(id)sender {
-    NSLog(@"toggling values equal...");
-    equal = !equal;
-}
-- (IBAction)toggleRandomization:(id)sender {
-    randomization = !randomization;
 }
 @end
