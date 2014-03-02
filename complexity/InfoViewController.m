@@ -38,8 +38,8 @@ int html = -1;
     // NSString *dir = [NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES) lastObject];
     // NSString *path = [NSString stringWithFormat:@"%@/about.html"];
     // [wv loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://optimal.cs.binghamton.edu"]]];
-    NSLog(@"info view has appeared");
-    NSLog(@"%@", fileToLoad);
+    //NSLog(@"info view has appeared");
+    //NSLog(@"%@", fileToLoad);
 
     //basics is for basics button
     //"So whats this all about" is null

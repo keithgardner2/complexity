@@ -79,6 +79,7 @@ UIPickerView *pickerOptions;
     self.optionsColumn = [[NSArray alloc] initWithObjects:@"Random", @"Ascending", @"Descending", @"Values Equal", nil];
     
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){
+        /*
         CGSize iOSDeviceScreenSize = [[UIScreen mainScreen] bounds].size;
         if(iOSDeviceScreenSize.height  == 568){
             NSLog(@"Loading 4 inch storyboard");
@@ -87,15 +88,14 @@ UIPickerView *pickerOptions;
         }
         if(iOSDeviceScreenSize.height  == 480){
             NSLog(@"Loading 3.5 inch");
-            myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(350, 50, 60, 162.0)];
-            pickerOptions= [[UIPickerView alloc] initWithFrame:CGRectMake(400, 50, 60, 162.0)];
-        }
+            myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(20, 120, 250, 162.0)];
+            pickerOptions= [[UIPickerView alloc] initWithFrame:CGRectMake(270, 120, 250, 162.0)];
+        }*/
     }
     else{
-        myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(715, 130, 230, 150)];//good for iPad
-        pickerOptions= [[UIPickerView alloc] initWithFrame:CGRectMake(715, 330, 230, 200)];//height seems to be standard. at least on sumulator
+        myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(715, 130, 230, 150)];
+        pickerOptions= [[UIPickerView alloc] initWithFrame:CGRectMake(715, 330, 230, 200)];
     }
-    
     
     myPickerView.tag = 0;
     pickerOptions.tag = 1;
@@ -112,8 +112,6 @@ UIPickerView *pickerOptions;
     [self.view bringSubviewToFront:myPickerView];
     [self.view bringSubviewToFront:pickerOptions];
 
-    
-    //[myPickerView setC
     [myPickerView setBackgroundColor:[UIColor whiteColor]];
     [pickerOptions setBackgroundColor:[UIColor whiteColor]];
 }
@@ -238,6 +236,7 @@ int choice, next, original, originalSpot;//used in selection sort
 // The run has terminated -- update the screen, invalidate the timer tick...
 -(IBAction)stopRun:(id)sender
 {
+    NSLog(@"STOPPING RUN");
     stopTime = mach_absolute_time();
     [self updateElapsed];
     
@@ -332,9 +331,9 @@ int choice, next, original, originalSpot;//used in selection sort
 }
 -(void)rankSort{//still need to implement !shouldRun or something in inner most loop
     //NSLog(@"running debug before");
-    [self debug];
+    //[self debug];
     
-    //NSLog(@"running rank sort...");
+    NSLog(@"running rank sort...");
     
     int spot;
     int copy[problemSize];
@@ -345,18 +344,18 @@ int choice, next, original, originalSpot;//used in selection sort
                 problemSize = 1;
                 continue;
             }
-            if(data[i] < data[j] && data[i] != data[j]){
+            if(data[i] <= data[j] ){//&& data[i] != data[j]){//for dealing with duplicates
+                //NSLog(@"inner if");
                 spot++;
             }
         }
         copy[spot] = data[i];
     }
     
-    //NSLog(@"debug after");
-    //for(int i = 0; i< problemSize; i++){
-    //    NSLog(@"%i", copy[i]);//new sorted data is in copy, not original array
-    //}
-    
+    NSLog(@"debug after");
+    for(int i = 0; i< problemSize; i++){
+        NSLog(@"%i", copy[i]);//new sorted data is in copy, not original array
+    }
 }
 
 -(void)heapSort{
@@ -494,6 +493,7 @@ int hoare_partition(int *arr, int start, int end, int pi)
             exit(1);
         }
         
+        
         while(arr[++i] < pv);
         while(arr[--j] > pv);
         if (i < j)
@@ -558,30 +558,30 @@ int lomuto_partition(int *arr, int start, int end, int pi)
             //[self debug];
             for (i = 0; i < problemSize; ++i)
                 data[i] = rand();
-            NSLog(@"done making random data");
-            [self debug];
+            NSLog(@"done making random data---------------------------------------");
+            //[self debug];
             break;
         case 1://ascending
             NSLog(@"making ascending data");
             for (i = 0; i < problemSize; ++i)//0,1,2,3,4,5,...1000
                 data[i] = i;
-            [self debug];
-            NSLog(@"done making ascending data");
+            //[self debug];
+            NSLog(@"done making ascending data------------------------------------");
             break;
         case 2://descending
             NSLog(@"making descending data");
             for (i = 0; i < problemSize; i++)//999, 998...1,0.
                 data[problemSize - i -1] = i;
-            [self debug];
-            NSLog(@"done making descending data");
+            //[self debug];
+            NSLog(@"done making descending data-----------------------------------");
             break;
         case 3://values =
             NSLog(@"making = data");
             for (i = 0; i < problemSize; ++i){
                 data[i] = 25;
             }
-            NSLog(@"done making = data");
-            [self debug];
+            NSLog(@"done making = data---------------------------------------------");
+            //[self debug];
             break;
     }
     
@@ -590,52 +590,52 @@ int lomuto_partition(int *arr, int start, int end, int pi)
         case 0://qs hoare
             NSLog(@"hoare");
             quicksort_hoare_norand(data, 0, problemSize-1);//tested on random, ascending
-            [self debug];                                   //need to fix stop button?
+            //[self debug];                                   //need to fix stop button?
             break;
         case 1:
             NSLog(@"hoare rand");
             quicksort_hoare_rand(data, 0, problemSize-1);//tested on random, ascending
-            [self debug];
+            //[self debug];
             break;//qs hoare rand
         case 2://sq lomuto
             NSLog(@"lomuto");
             quicksort_lomuto_norand(data, 0, problemSize-1);//tested on random, ascending
-            [self debug];
+            //[self debug];
             break;
         case 3://qs lomuto rand
             NSLog(@"lomuto rand");
             quicksort_lomuto_rand(data, 0, problemSize-1);//tested on random, ascending
-            [self debug];
+            //[self debug];
             break;
         case 4://insertion
             NSLog(@"insertion");//tested on random, ascending
             [self insertionSort];
-            [self debug];
+            //[self debug];
             break;
         case 5://selection
             NSLog(@"selection");//tested on random, ascending
             [self selectionSort];
-            [self debug];
+            //[self debug];
             break;
         case 6://rank
             NSLog(@"rank");
             [self rankSort];
-            [self debug];//this is BROKE
+            //[self debug];//cant use this because data is in a copied array
             break;
         case 7://heap
             NSLog(@"heap");
             [self heapSort];//tested on random, ascending
-            [self debug];
+            //[self debug];
             break;
         case 8://merge
             NSLog(@"merge");
             mergeSort(data, problemSize);//tested on random, ascending
-            [self debug];
+            //[self debug];
             break;
         case 9://bubble
             NSLog(@"bubble");
             [self bubbleSort];//tested on random, ascending
-            [self debug];
+            //[self debug];
             break;
             
         
