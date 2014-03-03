@@ -446,7 +446,14 @@ void quicksort_lomuto_norand(int *arr, int start, int end){
     
     int p = lomuto_partition(arr, start, end, start);
     quicksort_lomuto_norand(arr, start, p-1);
+    if(global_kill_flag){
+        return;
+    }
     quicksort_lomuto_norand(arr, p+1, end);
+    if(global_kill_flag){//test on no rand now which is slow for ascending
+        global_kill_flag= 0;
+        return;
+    }
 }
 void quicksort_lomuto_rand(int *arr, int start, int end)
 {
@@ -457,7 +464,15 @@ void quicksort_lomuto_rand(int *arr, int start, int end)
     
     int p = lomuto_partition(arr, start, end, RAND_RANGE(start, end));
     quicksort_lomuto_rand(arr, start, p-1);
+    if(global_kill_flag){
+        global_kill_flag= 0;
+        return;
+    }
     quicksort_lomuto_rand(arr, p+1, end);
+    if(global_kill_flag){
+        global_kill_flag= 0;
+        return;
+    }
 }
 
 void quicksort_hoare_norand(int *arr, int start, int end){
@@ -537,7 +552,9 @@ int lomuto_partition(int *arr, int start, int end, int pi)
         if (global_kill_flag)
         {
             NSLog(@"EXITING----- lomuto partition");
-            //i = 0;
+            i = end +1;
+            break;
+            //return 0;
             //j = -1;
             //exit(0);
         }
