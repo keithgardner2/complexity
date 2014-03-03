@@ -336,7 +336,9 @@ int choice, next, original, originalSpot;//used in selection sort
     NSLog(@"running rank sort...");
     
     int spot;
-    int copy[problemSize];
+    //int copy[problemSize];
+    //insert here
+    int *copy = (int *)malloc(sizeof(int) * problemSize);//This sets data to a bunch of random numbers
     for(int i = 0; i < problemSize; i++){
         spot = 0;
         for(int j = 0 ; j < problemSize; j++){
@@ -488,9 +490,18 @@ int hoare_partition(int *arr, int start, int end, int pi)
     
     while(1)
     {
+        if (!shouldRun)//attempt to make sure stop will work
+        {
+            NSLog(@"!should run in hoare partition");//gets stuck here when stop button?
+            global_kill_flag = 1;
+            //continue;
+        }
         if (global_kill_flag)
         {
-            exit(1);
+            NSLog(@"EXITING----- hoare partition");
+            //i = 1000000000;
+            //j = -1;
+            //exit(0);exit is frowned upon for iOS, need to change some conditoin to break
         }
         
         
@@ -516,9 +527,19 @@ int lomuto_partition(int *arr, int start, int end, int pi)
     
     for (int i = start; i < end; ++i)
     {
+        if (!shouldRun)//attempt to make sure stop will work
+        {
+            NSLog(@"!should run in lomuto partition");
+            global_kill_flag = 1;
+            //return 0;
+            //continue;
+        }
         if (global_kill_flag)
         {
-            exit(1);
+            NSLog(@"EXITING----- lomuto partition");
+            //i = 0;
+            //j = -1;
+            //exit(0);
         }
         
         if (arr[i] <= pv)
