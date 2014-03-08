@@ -312,6 +312,7 @@ int choice, next, original, originalSpot;//used in selection sort
         choice = data[i];
         original = choice;
         next = i + 1;
+        
         for(next; next < problemSize; next++){
             if (!shouldRun)
             {
@@ -328,6 +329,9 @@ int choice, next, original, originalSpot;//used in selection sort
         data[i] = choice;
         data[originalSpot] = original;
     }
+    
+    
+    
 }
 -(void)rankSort{//still need to implement !shouldRun or something in inner most loop
     //NSLog(@"running debug before");
@@ -339,17 +343,28 @@ int choice, next, original, originalSpot;//used in selection sort
     //int copy[problemSize];
     //insert here
     int *copy = (int *)malloc(sizeof(int) * problemSize);//This sets data to a bunch of random numbers
+    //for loop through and set to negative one
+    for(int i =0; i <problemSize; i++){
+        copy[i] = -1;
+    }
+    NSLog(@"This is copy:------------------");
+    for(int i = 0; i< problemSize; i++){
+        NSLog(@"%i", copy[i]);//new sorted data is in copy, not original array
+    }
+    
     for(int i = 0; i < problemSize; i++){
         spot = 0;
-        for(int j = 0 ; j < problemSize; j++){
+        for(int j = 0; j < problemSize; j++){
             if (!shouldRun){
                 problemSize = 1;
                 continue;
             }
-            if(data[i] <= data[j] ){//&& data[i] != data[j]){//for dealing with duplicates
-                //NSLog(@"inner if");
+            if(data[i] < data[j] ){
                 spot++;
             }
+        }
+        while(copy[spot] != -1){//dealing with equal value data
+            spot++;
         }
         copy[spot] = data[i];
     }
@@ -358,6 +373,10 @@ int choice, next, original, originalSpot;//used in selection sort
     for(int i = 0; i< problemSize; i++){
         NSLog(@"%i", copy[i]);//new sorted data is in copy, not original array
     }
+    
+    //need to delete still- is this right?
+    free(copy);
+    //*copy = NULL;
 }
 
 -(void)heapSort{
@@ -475,26 +494,37 @@ void quicksort_lomuto_rand(int *arr, int start, int end)
     }
 }
 
-void quicksort_hoare_norand(int *arr, int start, int end){
+int quicksort_hoare_norand(int *arr, int start, int end){
     if (start >= end)
     {
-        return;
+        return 0 ;
     }
     
     int p = hoare_partition(arr, start, end, start);
+    if(p ==-1){
+        NSLog(@"trying to break, returned -1");
+        return 0;
+    }
     quicksort_hoare_norand(arr, start, p);
     quicksort_hoare_norand(arr, p+1, end);
+    return 0;
 }
-void quicksort_hoare_rand(int *arr, int start, int end)
+int quicksort_hoare_rand(int *arr, int start, int end)
 {
     if (start >= end)
     {
-        return;
+        return 0;
     }
     
     int p = hoare_partition(arr, start, end, RAND_RANGE(start, end));
+    if(p ==-1){
+        
+        NSLog(@"trying to break, returned -1");
+        return 0;
+    }
     quicksort_hoare_rand(arr, start, p);
     quicksort_hoare_rand(arr, p+1, end);
+    return 0;
 }
 
 int hoare_partition(int *arr, int start, int end, int pi)
@@ -514,6 +544,8 @@ int hoare_partition(int *arr, int start, int end, int pi)
         if (global_kill_flag)
         {
             NSLog(@"EXITING----- hoare partition");
+            global_kill_flag = false;
+            return -1;//this may make it crash.....
             //i = 1000000000;
             //j = -1;
             //exit(0);exit is frowned upon for iOS, need to change some conditoin to break
@@ -552,6 +584,7 @@ int lomuto_partition(int *arr, int start, int end, int pi)
         if (global_kill_flag)
         {
             NSLog(@"EXITING----- lomuto partition");
+            global_kill_flag = false;
             i = end +1;
             break;
             //return 0;
