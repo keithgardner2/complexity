@@ -20,7 +20,7 @@
 @property (nonatomic) int problemSize;
 @property (nonatomic, assign) IBOutlet UISlider *problemSlider;
 @property (nonatomic, assign) IBOutlet UILabel *problemLabel;
-@property (nonatomic) int algType;  // Which algorithm to run
+@property (nonatomic) int algType;
 @property (nonatomic, retain) IBOutlet UIView *runShield;
 
 
@@ -36,10 +36,5 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerOptions;
 @property (strong, nonatomic)          NSArray *algColumn;
 @property (strong, nonatomic)          NSArray *optionsColumn;
-
-
-
-
-// -(IBAction)cChange:(id)sender;
 
 @end

@@ -44,6 +44,12 @@ bool ascending = false;
 bool descending = false;
 bool equal = false;
 
+int *data;
+int *temp;
+BOOL shouldRun;
+BOOL isRunning;
+int choice, next, original, originalSpot;//used in selection sort
+
 UIPickerView *myPickerView;
 UIPickerView *pickerOptions;
 
@@ -94,7 +100,7 @@ UIPickerView *pickerOptions;
     }
     else{
         myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(715, 130, 230, 150)];
-        pickerOptions= [[UIPickerView alloc] initWithFrame:CGRectMake(715, 330, 230, 200)];
+        pickerOptions= [[UIPickerView alloc] initWithFrame:CGRectMake(715, 330, 230, 150)];
     }
     
     myPickerView.tag = 0;
@@ -124,13 +130,11 @@ UIPickerView *pickerOptions;
 // tell the picker how many rows are available for a given component
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     NSUInteger numRows;
-    
-    
     if(pickerView.tag == 0){
         numRows = 10;//8 algorithms currently
     }
     else{
-        numRows = 4;
+        numRows = 4;//4 data options
     }
     
     return numRows;
@@ -183,11 +187,6 @@ static int getUptimeInMilliseconds()
     return (int)((mach_absolute_time() * s_timebase_info.numer) / (kOneMillion * s_timebase_info.denom));
 }
 
-int *data;
-int *temp;
-BOOL shouldRun;
-BOOL isRunning;
-int choice, next, original, originalSpot;//used in selection sort
 
 -(IBAction)nChange:(id)sender
 {
@@ -236,7 +235,7 @@ int choice, next, original, originalSpot;//used in selection sort
 // The run has terminated -- update the screen, invalidate the timer tick...
 -(IBAction)stopRun:(id)sender
 {
-    NSLog(@"STOPPING RUN");
+    //NSLog(@"STOPPING RUN");
     stopTime = mach_absolute_time();
     [self updateElapsed];
     
@@ -254,12 +253,8 @@ int choice, next, original, originalSpot;//used in selection sort
     
 }
 
-
-// NSTimer *algTimer;
-
 -(void)bubbleSort
 {
-    //NSLog(@"Running bubble sort");
     int i, j;
     for (i = 0; i < problemSize; ++i)
     {
@@ -285,15 +280,10 @@ int choice, next, original, originalSpot;//used in selection sort
     }
 }
 -(void)insertionSort{
-    //NSLog(@"Running insertion sort");
     int j, i, key;
     for(j = 1; j < problemSize; j++){
         key = data[j];
         i = j -1;
-            // Added in to the code, so that if
-            // the user wants to terminate a run, we can
-            // do that, and then be able to clean up
-            // memory that was allocated temporarily
             if (!shouldRun)
             {
                 problemSize = 1;
@@ -333,25 +323,12 @@ int choice, next, original, originalSpot;//used in selection sort
     
     
 }
--(int)rankSort{//still need to implement !shouldRun or something in inner most loop
-    //NSLog(@"running debug before");
-    //[self debug];
-    
-    NSLog(@"running rank sort...");
-    
+-(int)rankSort{
     int spot;
-    //int copy[problemSize];
-    //insert here
-    int *copy = (int *)malloc(sizeof(int) * problemSize);//This sets data to a bunch of random numbers
-    //for loop through and set to negative one
+    int *copy = (int *)malloc(sizeof(int) * problemSize);
     for(int i =0; i <problemSize; i++){
         copy[i] = -1;
     }
-    //NSLog(@"This is copy:------------------");
-    //for(int i = 0; i< problemSize; i++){
-        //NSLog(@"%i", copy[i]);//new sorted data is in copy, not original array
-    //}
-    
     for(int i = 0; i < problemSize; i++){
         spot = 0;
         for(int j = 0; j < problemSize; j++){
@@ -364,25 +341,17 @@ int choice, next, original, originalSpot;//used in selection sort
                 spot++;
             }
         }
-        while(copy[spot] != -1){//dealing with equal value data
+        while(copy[spot] != -1){
             spot++;
         }
         copy[spot] = data[i];
     }
     
-    //NSLog(@"debug after");
-    //for(int i = 0; i< problemSize; i++){
-        //NSLog(@"%i", copy[i]);//new sorted data is in copy, not original array
-    //}
-    
-    //need to delete still- is this right?
     free(copy);
-    //*copy = NULL;
     return 0;
 }
 
 -(void)heapSort{
-    NSLog(@"Running heap sort");
     heapsort(data, problemSize, sizeof(int), intCompare);
 }
 
@@ -433,7 +402,6 @@ void mergesort_aux(int *arr, int *tmp, int start, int end){
 }
 
 void mergeSort(int *arr, int size){
-    NSLog(@"mergeSort");
     int *tmp = malloc(sizeof(int) * size);
     mergesort_aux(arr, tmp, 0, size);
     free(tmp);
@@ -453,12 +421,6 @@ int intCompare(const void *a, const void *b)
     return va - vb;
 }
 
-
-//-(void)quickSort{
-//    NSLog(@"Running quick sort");
-//    qsort(data, problemSize, sizeof(int), intCompare);
-//}
-
 void quicksort_lomuto_norand(int *arr, int start, int end){
     if (start >= end)
     {
@@ -471,7 +433,7 @@ void quicksort_lomuto_norand(int *arr, int start, int end){
         return;
     }
     quicksort_lomuto_norand(arr, p+1, end);
-    if(global_kill_flag){//test on no rand now which is slow for ascending
+    if(global_kill_flag){
         global_kill_flag= 0;
         return;
     }
@@ -505,7 +467,6 @@ int quicksort_hoare_norand(int *arr, int start, int end){
     
     int p = hoare_partition(arr, start, end, start);
     if(p ==-1){
-        NSLog(@"trying to break, returned -1");
         return 0;
     }
     quicksort_hoare_norand(arr, start, p);
@@ -521,8 +482,6 @@ int quicksort_hoare_rand(int *arr, int start, int end)
     
     int p = hoare_partition(arr, start, end, RAND_RANGE(start, end));
     if(p ==-1){
-        
-        NSLog(@"trying to break, returned -1");
         return 0;
     }
     quicksort_hoare_rand(arr, start, p);
@@ -538,20 +497,14 @@ int hoare_partition(int *arr, int start, int end, int pi)
     
     while(1)
     {
-        if (!shouldRun)//attempt to make sure stop will work
+        if (!shouldRun)
         {
-            NSLog(@"!should run in hoare partition");//gets stuck here when stop button?
             global_kill_flag = 1;
-            //continue;
         }
         if (global_kill_flag)
         {
-            NSLog(@"EXITING----- hoare partition");
             global_kill_flag = false;
-            return -1;//this may make it crash.....
-            //i = 1000000000;
-            //j = -1;
-            //exit(0);exit is frowned upon for iOS, need to change some conditoin to break
+            return -1;
         }
         
         
@@ -577,22 +530,16 @@ int lomuto_partition(int *arr, int start, int end, int pi)
     
     for (int i = start; i < end; ++i)
     {
-        if (!shouldRun)//attempt to make sure stop will work
+        if (!shouldRun)
         {
-            NSLog(@"!should run in lomuto partition");
             global_kill_flag = 1;
             return 0;
-            //continue;
         }
         if (global_kill_flag)
         {
-            NSLog(@"EXITING----- lomuto partition");
             global_kill_flag = false;
             i = end +1;
             return 0;
-            //return 0;
-            //j = -1;
-            //exit(0);
         }
         
         if (arr[i] <= pv)
@@ -614,9 +561,6 @@ int lomuto_partition(int *arr, int start, int end, int pi)
     
     algTypePicker = [myPickerView selectedRowInComponent:0];
     optionType = [pickerOptions selectedRowInComponent:0];
-    //NSLog(@"algType: %i", algTypePicker);
-    //NSLog(@"optionType: %i", optionType);
-
     
     data = (int *)malloc(sizeof(int) * problemSize);//This sets data to a bunch of random numbers
     
@@ -626,93 +570,57 @@ int lomuto_partition(int *arr, int start, int end, int pi)
         return;
     }
     
-    switch(optionType){//takes care of second uipicker
-        case 0://random, as is
-            NSLog(@"making random data");
-            //[self debug];
+    switch(optionType){
+        case 0:
             for (i = 0; i < problemSize; ++i)
                 data[i] = rand();
-            NSLog(@"done making random data---------------------------------------");
-            //[self debug];
             break;
         case 1://ascending
-            NSLog(@"making ascending data");
-            for (i = 0; i < problemSize; ++i)//0,1,2,3,4,5,...1000
+            for (i = 0; i < problemSize; ++i)
                 data[i] = i;
-            //[self debug];
-            NSLog(@"done making ascending data------------------------------------");
             break;
         case 2://descending
-            NSLog(@"making descending data");
-            for (i = 0; i < problemSize; i++)//999, 998...1,0.
+            for (i = 0; i < problemSize; i++)
                 data[problemSize - i -1] = i;
-            //[self debug];
-            NSLog(@"done making descending data-----------------------------------");
             break;
         case 3://values =
-            NSLog(@"making = data");
             for (i = 0; i < problemSize; ++i){
                 data[i] = 25;
             }
-            NSLog(@"done making = data---------------------------------------------");
-            //[self debug];
             break;
     }
     
-    //now take care of first uipicker...
     switch(algTypePicker){
-        case 0://qs hoare
-            NSLog(@"hoare");
-            quicksort_hoare_norand(data, 0, problemSize-1);//tested on random, ascending
-            //[self debug];                                   //need to fix stop button?
+        case 0:
+            quicksort_hoare_norand(data, 0, problemSize-1);
             break;
         case 1:
-            NSLog(@"hoare rand");
-            quicksort_hoare_rand(data, 0, problemSize-1);//tested on random, ascending
-            //[self debug];
-            break;//qs hoare rand
-        case 2://sq lomuto
-            NSLog(@"lomuto");
-            quicksort_lomuto_norand(data, 0, problemSize-1);//tested on random, ascending
-            //[self debug];
+            quicksort_hoare_rand(data, 0, problemSize-1);
             break;
-        case 3://qs lomuto rand
-            NSLog(@"lomuto rand");
-            quicksort_lomuto_rand(data, 0, problemSize-1);//tested on random, ascending
-            //[self debug];
+        case 2:
+            quicksort_lomuto_norand(data, 0, problemSize-1);
             break;
-        case 4://insertion
-            NSLog(@"insertion");//tested on random, ascending
+        case 3:
+            quicksort_lomuto_rand(data, 0, problemSize-1);
+            break;
+        case 4:
             [self insertionSort];
-            //[self debug];
             break;
-        case 5://selection
-            NSLog(@"selection");//tested on random, ascending
+        case 5:
             [self selectionSort];
-            //[self debug];
             break;
-        case 6://rank
-            NSLog(@"rank");
+        case 6:
             [self rankSort];
-            //[self debug];//cant use this because data is in a copied array
             break;
-        case 7://heap
-            NSLog(@"heap");
-            [self heapSort];//tested on random, ascending
-            //[self debug];
+        case 7:
+            [self heapSort];
             break;
-        case 8://merge
-            NSLog(@"merge");
-            mergeSort(data, problemSize);//tested on random, ascending
-            //[self debug];
+        case 8:
+            mergeSort(data, problemSize);
             break;
-        case 9://bubble
-            NSLog(@"bubble");
-            [self bubbleSort];//tested on random, ascending
-            //[self debug];
+        case 9:
+            [self bubbleSort];
             break;
-            
-        
     }
     if (LDBG) NSLog(@"Ending.");
     
@@ -807,8 +715,7 @@ int lomuto_partition(int *arr, int start, int end, int pi)
 }
 
 -(IBAction)pickHTML:(id)sender{
-    //htmlTag = [sender tag];
-    html = [sender tag]; // Just an example
+    html = [sender tag];
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
     if (standardUserDefaults) {
         [standardUserDefaults setObject:[NSNumber numberWithInt:html] forKey:@"age"];
