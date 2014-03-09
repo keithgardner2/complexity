@@ -37,6 +37,7 @@
 		E1366D43187F720F001402F5 /* EVC_iPhone4inch.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1366D42187F720F001402F5 /* EVC_iPhone4inch.xib */; };
 		E148F9BD1893017A0051CF63 /* demoCode.html in Resources */ = {isa = PBXBuildFile; fileRef = E148F9BC1893017A0051CF63 /* demoCode.html */; };
 		E19C026C187EED2E001B6DEE /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E19C026B187EED2E001B6DEE /* Main_iPhone.storyboard */; };
+		E1F97ADC18CD1AD20025F557 /* iPhoneScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F97ADB18CD1AD20025F557 /* iPhoneScrollViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,8 @@
 		E1366D42187F720F001402F5 /* EVC_iPhone4inch.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EVC_iPhone4inch.xib; sourceTree = "<group>"; };
 		E148F9BC1893017A0051CF63 /* demoCode.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = demoCode.html; sourceTree = "<group>"; };
 		E19C026B187EED2E001B6DEE /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
+		E1F97ADA18CD1AD20025F557 /* iPhoneScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPhoneScrollViewController.h; sourceTree = "<group>"; };
+		E1F97ADB18CD1AD20025F557 /* iPhoneScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPhoneScrollViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +182,8 @@
 				74FBB8191854188600E275A5 /* InfoViewController.h */,
 				74FBB81A1854188600E275A5 /* InfoViewController.m */,
 				74FBB81C18541B7B00E275A5 /* ExperimentViewController.h */,
+				E1F97ADA18CD1AD20025F557 /* iPhoneScrollViewController.h */,
+				E1F97ADB18CD1AD20025F557 /* iPhoneScrollViewController.m */,
 				74FBB81D18541B7B00E275A5 /* ExperimentViewController.m */,
 				74781662186F9F88009CE8B9 /* EVC_iPad.xib */,
 				E1366D40187F6E9A001402F5 /* EVC_iPhone.xib */,
@@ -337,6 +342,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1F97ADC18CD1AD20025F557 /* iPhoneScrollViewController.m in Sources */,
 				74ABB29B1855204D00856895 /* ComplexityGraph.m in Sources */,
 				74FBB81E18541B7B00E275A5 /* ExperimentViewController.m in Sources */,
 				74FBB7F2185417B900E275A5 /* CCAppDelegate.m in Sources */,
@@ -486,7 +492,7 @@
 				INFOPLIST_FILE = "complexity/complexity-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -502,7 +508,7 @@
 				INFOPLIST_FILE = "complexity/complexity-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
