@@ -333,7 +333,7 @@ int choice, next, original, originalSpot;//used in selection sort
     
     
 }
--(void)rankSort{//still need to implement !shouldRun or something in inner most loop
+-(int)rankSort{//still need to implement !shouldRun or something in inner most loop
     //NSLog(@"running debug before");
     //[self debug];
     
@@ -347,17 +347,18 @@ int choice, next, original, originalSpot;//used in selection sort
     for(int i =0; i <problemSize; i++){
         copy[i] = -1;
     }
-    NSLog(@"This is copy:------------------");
-    for(int i = 0; i< problemSize; i++){
-        NSLog(@"%i", copy[i]);//new sorted data is in copy, not original array
-    }
+    //NSLog(@"This is copy:------------------");
+    //for(int i = 0; i< problemSize; i++){
+        //NSLog(@"%i", copy[i]);//new sorted data is in copy, not original array
+    //}
     
     for(int i = 0; i < problemSize; i++){
         spot = 0;
         for(int j = 0; j < problemSize; j++){
             if (!shouldRun){
                 problemSize = 1;
-                continue;
+                free(copy);
+                return 0;
             }
             if(data[i] < data[j] ){
                 spot++;
@@ -369,14 +370,15 @@ int choice, next, original, originalSpot;//used in selection sort
         copy[spot] = data[i];
     }
     
-    NSLog(@"debug after");
-    for(int i = 0; i< problemSize; i++){
-        NSLog(@"%i", copy[i]);//new sorted data is in copy, not original array
-    }
+    //NSLog(@"debug after");
+    //for(int i = 0; i< problemSize; i++){
+        //NSLog(@"%i", copy[i]);//new sorted data is in copy, not original array
+    //}
     
     //need to delete still- is this right?
     free(copy);
     //*copy = NULL;
+    return 0;
 }
 
 -(void)heapSort{
@@ -474,24 +476,25 @@ void quicksort_lomuto_norand(int *arr, int start, int end){
         return;
     }
 }
-void quicksort_lomuto_rand(int *arr, int start, int end)
+int quicksort_lomuto_rand(int *arr, int start, int end)
 {
     if (start >= end)
     {
-        return;
+        return 0;
     }
     
     int p = lomuto_partition(arr, start, end, RAND_RANGE(start, end));
     quicksort_lomuto_rand(arr, start, p-1);
     if(global_kill_flag){
         global_kill_flag= 0;
-        return;
+        return 0;
     }
     quicksort_lomuto_rand(arr, p+1, end);
     if(global_kill_flag){
         global_kill_flag= 0;
-        return;
+        return 0;
     }
+    return 0;
 }
 
 int quicksort_hoare_norand(int *arr, int start, int end){
@@ -578,7 +581,7 @@ int lomuto_partition(int *arr, int start, int end, int pi)
         {
             NSLog(@"!should run in lomuto partition");
             global_kill_flag = 1;
-            //return 0;
+            return 0;
             //continue;
         }
         if (global_kill_flag)
@@ -586,7 +589,7 @@ int lomuto_partition(int *arr, int start, int end, int pi)
             NSLog(@"EXITING----- lomuto partition");
             global_kill_flag = false;
             i = end +1;
-            break;
+            return 0;
             //return 0;
             //j = -1;
             //exit(0);

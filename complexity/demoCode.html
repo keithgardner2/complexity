@@ -99,7 +99,7 @@ Best Case: O(n log n)
 Worst Case: O(n^2)<br>
 Best Case: O(n log n)<br>
 
-<h3>Here's quicksort with lomuto partitioning, no randomization: (Thanks <a href = "http://huskyalgo.com">Anthony</a>!)</h3>
+<h3>Here's quicksort with lomuto partitioning, no randomization: </h3>
 
 <code>
     <pre>
@@ -249,20 +249,62 @@ Best case performance: O(n)
 
 <h1>Heap sort</h1>
 
-<p>Heap sort is a pretty efficient algorithm.
+<p>Heap sort is a fast algorithm. It's built into stdlib.h, but heres some sample code to look at.
 
-<p>Average performance: <br>
-Worst case performance: <br>
-Best case performance: <br>
+<p>Average performance: O(n log n)<br>
+Worst case performance:O(n log n) <br>
+Best case performance: O(n log n)<br>
+
+<code>
+    <pre>
+        
+        #define ValType double
+        #define IS_LESS(v1, v2)  (v1 < v2)
+            
+            void siftDown( ValType *a, int start, int count);
+            
+            #define SWAP(r,s)  do{ValType t=r; r=s; s=t; } while(0)
+            
+            void heapsort( ValType *a, int count){
+                int start, end;
+            
+                /* heapify */
+                for (start = (count-2)/2; start >=0; start--) {
+                    siftDown( a, start, count);
+                }
+            
+                for (end=count-1; end > 0; end--) {
+                    SWAP(a[end],a[0]);
+                    siftDown(a, 0, end);
+                    }
+            }
+            
+            void siftDown( ValType *a, int start, int end){
+                int root = start;
+            
+                while ( root*2+1 < end ) {
+                    int child = 2*root + 1;
+                    if ((child + 1 < end) && IS_LESS(a[child],a[child+1])) {
+                        child += 1;
+                    }
+                    if (IS_LESS(a[root], a[child])) {
+                        SWAP( a[child], a[root] );
+                        root = child;
+                    }
+                    else
+                        return;
+                }
+            }
+</pre>
+</code>
 
 
 <h1>Rank sort</h1>
 
 <p> This is a pretty simple working algorithm to implement, and as such is usually slow. The concept is pretty easy is understand: you go through each element of your array, and for each item, you compare and see how it ranks it terms of size. You count the number of items smaller. Then, you insert the item into a second array at that index.
 
-<p>Average performance:<br>
-Worst case performance:<br>
-Best case performance:
+    Rank Sort can be used with multiple processors then can be efficient. But other than that application, rank sort is typically slow O(n^2)
+
 
 <h3>Here's code in c to sort the data in descending order:</h3>
 
@@ -284,16 +326,13 @@ Best case performance:
             </pre>
 </code>
 
-<h3>... and here's code to put the data in ascending order:</h3>
-
-
 <h1>Selection Sort</h1>
 
 <p>Selection sort is a fairly simple sorting algorithm to implement.... But, if you run this on 50,000, you'll be waiting a while for it to complete.
 
-<p>Average performance:<br>
-Worst case performance:<br>
-Best case performance:
+<p>Average performance: O(n^2)<br>
+Worst case performance: O(n^2)<br>
+Best case performance: O(n^2)
 
 <h3> Here's some code...</h3>
 
@@ -326,11 +365,11 @@ Best case performance:
 
 <h1>Merge sort</h1>
 
-<p>Merge sort uses recursion...
+<p>Merge sort uses recursion and is quick for sorting data.
 
-<p>Average performance:<br>
-Worst case performance:<br>
-Best case performance:
+<p>Average performance: O(n log n)<br>
+Worst case performance: O(n log n)<br>
+Best case performance: O(n log n)
 
 <h3>Here's merge sort in c:</h3>
 

@@ -60,7 +60,7 @@ int html = -1;
         switch (html){
             case 8:
                 NSLog(@"iPhone storyboard in case");
-                [wv loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"iPhoneVersion" ofType:@"html"] isDirectory:NO]]];
+                [wv loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"demoCode" ofType:@"html"] isDirectory:NO]]];
                 break;
             }
     }
