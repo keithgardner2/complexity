@@ -23,6 +23,9 @@
 @property (nonatomic) int algType;
 @property (nonatomic, retain) IBOutlet UIView *runShield;
 
+@property (nonatomic, assign) IBOutlet UILabel *userAlg;
+@property (nonatomic, assign) IBOutlet UILabel *userData;
+
 
 -(IBAction)startRun:(id)sender;
 -(IBAction)stopRun:(id)sender;

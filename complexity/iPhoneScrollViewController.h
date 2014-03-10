@@ -7,8 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ExperimentViewController.h"
 
-@interface iPhoneScrollViewController : UIViewController
+
+@interface iPhoneScrollViewController : UIViewController <UIPickerViewDelegate>
+
+//@property (nonatomic, assign) IBOutlet UILabel *userAlg;
+//@property (nonatomic, assign) IBOutlet UILabel *userData;
+
+
 
 @property (weak, nonatomic) IBOutlet UIPickerView *myPickerView;
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerOptions;

@@ -44,6 +44,9 @@ bool ascending = false;
 bool descending = false;
 bool equal = false;
 
+bool shouldLoadPickers = false;
+bool updateLabels = false;
+
 int *data;
 int *temp;
 BOOL shouldRun;
@@ -64,6 +67,39 @@ UIPickerView *pickerOptions;
 @synthesize algType;
 @synthesize runShield;
 
+@synthesize userAlg;
+@synthesize userData;
+
+- (IBAction)goBack:(id)sender {
+    NSInteger algTypePicker;
+    NSInteger optionType;
+    
+    algTypePicker = [myPickerView selectedRowInComponent:0];
+    optionType = [pickerOptions selectedRowInComponent:0];
+    
+    NSLog(@"alg: %i", algTypePicker);
+    NSLog(@"opt: %i", optionType);
+    
+    [userAlg setText:@"yay"];
+    [userData setText:@"yippee"];
+    
+}
+- (IBAction)updateLabels:(id)sender {
+    updateLabels= !updateLabels;
+}
+
+
+- (IBAction)loadPickersiPhone:(id)sender {
+    shouldLoadPickers = !shouldLoadPickers;
+}
+
+- (IBAction)setLabels:(id)sender {
+    NSLog(@"just set label setLabels");
+    [userAlg setText:@"yay"];
+    [userData setText:@"yippee"];
+}
+
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -76,6 +112,10 @@ UIPickerView *pickerOptions;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [userAlg setText:@"--"];
+    [userData setText:@"--"];
+    
     [self resetHTMLTag];//reset html file to load depending on button
 	// Do any additional setup after loading the view.
     [self nChange:nil];
@@ -84,19 +124,35 @@ UIPickerView *pickerOptions;
     self.algColumn  = [[NSArray alloc]         initWithObjects:@"QS Hoare", @"QS Hoare Rand", @"QS Lomuto", @"QS Lomuto Rand",@"Insertion Sort",@"Selection Sort",@"Rank Sort",@"Heap Sort", @"Merge Sort", @"Bubble Sort", nil];
     self.optionsColumn = [[NSArray alloc] initWithObjects:@"Random", @"Ascending", @"Descending", @"Values Equal", nil];
     
+    NSLog(@"Just before updateLabels in ViewDidLoad");
+    
+    if(updateLabels){//this doesn't get called everytime we go back :(
+        
+        NSLog(@"just set label");
+        [userAlg setText:@"yay"];
+        [userData setText:@"yippee"];
+        
+    }
+    
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){
-        /*
-        CGSize iOSDeviceScreenSize = [[UIScreen mainScreen] bounds].size;
-        if(iOSDeviceScreenSize.height  == 568){
-            NSLog(@"Loading 4 inch storyboard");
-            myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(350, 50, 150, 162.0)];
-            pickerOptions= [[UIPickerView alloc] initWithFrame:CGRectMake(400, 50, 150, 162.0)];
+        if(shouldLoadPickers){//only load if in second modal
+            NSLog(@"in if view did load iPhoneScrollVC");
+        
+            CGSize iOSDeviceScreenSize = [[UIScreen mainScreen] bounds].size;
+            if(iOSDeviceScreenSize.height  == 568){
+                NSLog(@"Loading 4 inch storyboard");
+                myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(50, 50, 150, 162.0)];
+            
+                pickerOptions= [[UIPickerView alloc] initWithFrame:CGRectMake(200, 50, 150, 162.0)];
+            }
+            if(iOSDeviceScreenSize.height  == 480){
+            
+                NSLog(@"Loading 3.5 inch");
+                myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(19, 84, 215, 162.0)];
+            
+                pickerOptions= [[UIPickerView alloc] initWithFrame:CGRectMake(247, 84, 215, 162.0)];
+            }
         }
-        if(iOSDeviceScreenSize.height  == 480){
-            NSLog(@"Loading 3.5 inch");
-            myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(20, 120, 250, 162.0)];
-            pickerOptions= [[UIPickerView alloc] initWithFrame:CGRectMake(270, 120, 250, 162.0)];
-        }*/
     }
     else{
         myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(715, 130, 230, 150)];
@@ -158,10 +214,18 @@ UIPickerView *pickerOptions;
 // tell the picker the width of each row for a given component
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
     int sectionWidth;
-    if(pickerView.tag == 0)
-        sectionWidth = 220;
-    else
-        sectionWidth = 200;
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){
+        if(pickerView.tag == 0)
+            sectionWidth = 150;
+        else
+            sectionWidth = 200;
+        }
+    else{
+        if(pickerView.tag == 0)
+            sectionWidth = 220;
+        else
+            sectionWidth = 200;
+    }
     
     return sectionWidth;
 }
