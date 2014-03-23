@@ -11,7 +11,7 @@
 #import "InfoViewController.h"
 #import "ComplexityGraph.h"
 
-@interface ExperimentViewController : UIViewController <UIPickerViewDelegate>
+@interface ExperimentViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (nonatomic) BOOL running;
 @property (nonatomic) uint64_t startTime, stopTime;

@@ -53,8 +53,8 @@ BOOL shouldRun;
 BOOL isRunning;
 int choice, next, original, originalSpot;//used in selection sort
 
-UIPickerView *myPickerView;
-UIPickerView *pickerOptions;
+//UIPickerView *myPickerView;
+//UIPickerView *pickerOptions;
 
 @interface ExperimentViewController ()
 
@@ -66,6 +66,8 @@ UIPickerView *pickerOptions;
 @synthesize problemSize, problemLabel, problemSlider;
 @synthesize algType;
 @synthesize runShield;
+@synthesize myPickerView;
+@synthesize pickerOptions;
 
 @synthesize userAlg;
 @synthesize userData;
@@ -119,39 +121,13 @@ NSInteger optionType;
     self.algColumn  = [[NSArray alloc]         initWithObjects:@"QS Hoare", @"QS Hoare Rand", @"QS Lomuto", @"QS Lomuto Rand",@"Insertion Sort",@"Selection Sort",@"Rank Sort",@"Heap Sort", @"Merge Sort", @"Bubble Sort", nil];
     self.optionsColumn = [[NSArray alloc] initWithObjects:@"Random", @"Ascending", @"Descending", @"Values Equal", nil];
     
-    //NSLog(@"Just before updateLabels in ViewDidLoad");
-    
-//    if(updateLabels){//this doesn't get called everytime we go back :(
-//        
-//        NSLog(@"just set label");
-//        [userAlg setText:@"yay"];
-//        [userData setText:@"yippee"];
-//        
-//    }
+    [myPickerView setDelegate:self];
+    [pickerOptions setDelegate:self];
+
+    [myPickerView setDataSource:self];
+    [pickerOptions setDataSource:self];
     
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){//only do this certain times....
-        NSArray *viewControllers = self.navigationController.viewControllers;
-        //UIViewController *rootViewController = [viewControllers objectAtIndex:viewControllers.count - 2];
-        
-        //if (!([rootViewController isMemberOfClass:[InfoViewController ExperimentViewController]])) {
-//[[UIViewController rootViewController] isMemberOfClass:[NSData class]];
-        //rootViewController isMemberOfClass:[[UIViewController InfoViewController];
-        //}
-        
-        //Class rootClass = [self.rootViewController class];
-        UINavigationController *nav = (UINavigationController*) self.view.window.rootViewController;
-        UIViewController *root = [nav.viewControllers objectAtIndex:0];
-        
-        if(![root isKindOfClass:[ExperimentViewController class]]){
-            NSLog(@"KEITH");
-            
-        }
-        
-//        if (rootClass == [UINavigationController class]) {
-//            
-//        } else if (rootClass == [UITabBarController class]) {
-//            
-//        }
         
         
         if(shouldLoadPickers){//only load if in second modal
@@ -160,22 +136,24 @@ NSInteger optionType;
             CGSize iOSDeviceScreenSize = [[UIScreen mainScreen] bounds].size;
             if(iOSDeviceScreenSize.height  == 568){
                 NSLog(@"Loading 4 inch storyboard");
-                myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(50, 50, 150, 162.0)];
+                //myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(50, 50, 150, 162.0)];
             
-                pickerOptions= [[UIPickerView alloc] initWithFrame:CGRectMake(200, 50, 150, 162.0)];
+                //pickerOptions= [[UIPickerView alloc] initWithFrame:CGRectMake(200, 50, 150, 162.0)];
             }
             if(iOSDeviceScreenSize.height  == 480){
             
                 NSLog(@"Loading 3.5 inch");
-                myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(19, 84, 215, 162.0)];
+                //myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(19, 84, 215, 162.0)];
             
-                pickerOptions= [[UIPickerView alloc] initWithFrame:CGRectMake(247, 84, 215, 162.0)];
+                //pickerOptions= [[UIPickerView alloc] initWithFrame:CGRectMake(247, 84, 215, 162.0)];
             }
         }
     }
     else{
-        myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(715, 130, 230, 150)];
-        pickerOptions= [[UIPickerView alloc] initWithFrame:CGRectMake(715, 330, 230, 150)];
+        //UIPickerView *myPickerView;
+        //UIPickerView *pickerOptions;
+        //myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(715, 130, 230, 150)];
+        //pickerOptions= [[UIPickerView alloc] initWithFrame:CGRectMake(715, 330, 230, 150)];
     }
     
     myPickerView.tag = 0;
@@ -187,14 +165,19 @@ NSInteger optionType;
     myPickerView.showsSelectionIndicator = YES;
     pickerOptions.showsSelectionIndicator = YES;
     
-    [self.view addSubview:myPickerView];
-    [self.view addSubview:pickerOptions];
+    if(UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPhone){//only do this certain times....
+        //myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(715, 130, 230, 150)];
+        //pickerOptions= [[UIPickerView alloc] initWithFrame:CGRectMake(715, 330, 230, 150)];
     
-    [self.view bringSubviewToFront:myPickerView];
-    [self.view bringSubviewToFront:pickerOptions];
-
-    [myPickerView setBackgroundColor:[UIColor whiteColor]];
-    [pickerOptions setBackgroundColor:[UIColor whiteColor]];
+//    [self.view addSubview:myPickerView];
+//    [self.view addSubview:pickerOptions];
+//    
+//    [self.view bringSubviewToFront:myPickerView];
+//    [self.view bringSubviewToFront:pickerOptions];
+//
+//    [myPickerView setBackgroundColor:[UIColor whiteColor]];
+//    [pickerOptions setBackgroundColor:[UIColor whiteColor]];
+    }
 }
 
 
@@ -222,6 +205,7 @@ NSInteger optionType;
 
 // tell the picker the title for a given component
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    NSLog(@"setting rows name");
     if(pickerView.tag ==0){
         return _algColumn[row];
     }
@@ -639,12 +623,11 @@ int lomuto_partition(int *arr, int start, int end, int pi)
 -(void)do_it
 {
     int i;
-    NSInteger algTypePicker;
-    //NSInteger optionType;
-    
-    algTypePicker = [myPickerView selectedRowInComponent:0];
-    optionType = [pickerOptions selectedRowInComponent:0];
-    
+
+    if(UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPhone){
+        algType = [myPickerView selectedRowInComponent:0];
+        optionType = [pickerOptions selectedRowInComponent:0];
+    }
     data = (int *)malloc(sizeof(int) * problemSize);//This sets data to a bunch of random numbers
     
     if (data == NULL)
@@ -673,7 +656,7 @@ int lomuto_partition(int *arr, int start, int end, int pi)
             break;
     }
     
-    switch(algTypePicker){
+    switch(algType){
         case 0:
             NSLog(@"1");
             quicksort_hoare_norand(data, 0, problemSize-1);
@@ -744,9 +727,7 @@ int lomuto_partition(int *arr, int start, int end, int pi)
     if(UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPhone){//for iPAd, get tag. other wise its been set
         algType = [sender tag];
     }
-    if (LDBG) NSLog(@"Running algorithm %d", algType);
-    
-    
+    if (1) NSLog(@"Running algorithm %d option %d size %d", algType, optionType, problemSize);
     
     [self createShield];
     
@@ -761,10 +742,18 @@ int lomuto_partition(int *arr, int start, int end, int pi)
                      });
 }
 
+static ExperimentViewController *expVCPicker = nil;
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if (LDBG) NSLog(@"Segue named %@ %p", segue.identifier, segue.destinationViewController);
     
+    if ([segue.identifier isEqualToString:@"AlgPicker"])
+    {
+        NSLog(@"Segue to alg picker");
+        expVCPicker = [segue destinationViewController];
+    }
+   
     InfoViewController *vc = [segue destinationViewController];
     if ([segue.identifier isEqualToString:@"qs"])
         [vc setFileToLoad:@"qs"];
@@ -774,25 +763,27 @@ int lomuto_partition(int *arr, int start, int end, int pi)
 
 - (IBAction)done:(UIStoryboardSegue *)segue {
     //set which to run on
-    
+    NSLog(@"Done called.");
     NSInteger algTypePicker;
     NSInteger option;
     
-    algTypePicker = [myPickerView selectedRowInComponent:0];
-    option = [pickerOptions selectedRowInComponent:0];
+   if (expVCPicker)
+   {
+       algTypePicker = [[expVCPicker myPickerView] selectedRowInComponent:0];
+       option = [[expVCPicker pickerOptions] selectedRowInComponent:0];
     
-    NSLog(@"alg: %i", algTypePicker);
-    NSLog(@"opt: %i", option);
+       NSLog(@"alg: %i", algTypePicker);
+       NSLog(@"opt: %i", option);
     
-    NSString * s1= _algColumn[algTypePicker];
-    NSString * s2= _optionsColumn[option];
+       NSString * s1= _algColumn[algTypePicker];
+       NSString * s2= _optionsColumn[option];
     
-    [userAlg setText:s1];
-    [userData setText:s2];
+       [userAlg setText:s1];
+       [userData setText:s2];
     
-    algType = algTypePicker;
-    optionType = option;
-    
+       algType = algTypePicker;
+       optionType = option;
+   }
     //shouldLoadPickers = false;
     
     

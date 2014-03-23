@@ -572,8 +572,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="loadPickersiPhone:" destination="PZk-jP-bkT" eventType="touchUpInside" id="9rU-NF-Nwv"/>
-                                            <segue destination="4q2-r6-iIB" kind="modal" id="MTN-aO-PUR"/>
+                                            <segue destination="4q2-r6-iIB" kind="modal" identifier="AlgPicker" id="MTN-aO-PUR"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -588,6 +587,8 @@
                         <outlet property="elapsed" destination="acn-0A-Iyf" id="Xg7-M3-lAH"/>
                         <outlet property="problemLabel" destination="iXZ-Gk-8e6" id="DdB-iI-N4m"/>
                         <outlet property="problemSlider" destination="UKo-D1-RB5" id="7Qt-RZ-B0j"/>
+                        <outlet property="userAlg" destination="9O8-AL-Qxs" id="Ze5-d5-sim"/>
+                        <outlet property="userData" destination="vxD-mG-5cy" id="gkP-eM-pxr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yRo-Bi-qkX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -635,6 +636,16 @@
                                             <segue destination="puT-xA-cA4" kind="unwind" unwindAction="done:" id="fCa-d6-Ljg"/>
                                         </connections>
                                     </button>
+                                    <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="95R-m2-3Kd">
+                                        <rect key="frame" x="20" y="54" width="195" height="162"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </pickerView>
+                                    <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wbu-1z-KDm">
+                                        <rect key="frame" x="264" y="54" width="243" height="162"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </pickerView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
@@ -649,11 +660,15 @@
                     </view>
                     <navigationItem key="navigationItem" id="2fT-fx-sVP"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="myPickerView" destination="95R-m2-3Kd" id="gDT-og-lMk"/>
+                        <outlet property="pickerOptions" destination="wbu-1z-KDm" id="Z78-2u-Y3I"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JV7-if-SUU" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="puT-xA-cA4" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1415" y="187"/>
+            <point key="canvasLocation" x="1471" y="228"/>
         </scene>
     </scenes>
     <resources>

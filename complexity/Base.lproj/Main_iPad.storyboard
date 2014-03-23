@@ -401,7 +401,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tTz-to-1T5">
-                                        <rect key="frame" x="100" y="130" width="574" height="430"/>
+                                        <rect key="frame" x="67" y="83" width="574" height="448"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <string key="text">Here you can see computational complexity in action.  The app will generate some random integers, and then sort them using either quick sort, or bubble sort.   Quick sort is a classic divide-and-conquer approach, and is O(n log n).  Bubble sort is one of the simplest and easiest sorting algorithms to implement, but is O(n^2).  If you've looked at the Big-O complexity curves, you can probably guess which one is faster.  You can run them here to see for yourself that this is the case.   Try running Quick Sort on problems of different sizes, to see how long things take on your iPad.  Then try Bubble Sort.  Start small with Bubble Sort, and gradually increase the size of the problems....</string>
@@ -436,6 +436,16 @@
                                             <action selector="runAlgorithm:" destination="NEr-Vf-NGp" eventType="touchUpInside" id="O3G-mH-t1a"/>
                                         </connections>
                                     </button>
+                                    <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2nP-xO-ieU">
+                                        <rect key="frame" x="715" y="83" width="230" height="216"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </pickerView>
+                                    <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M6L-6h-H95">
+                                        <rect key="frame" x="715" y="315" width="230" height="216"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </pickerView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
@@ -445,6 +455,8 @@
                     </view>
                     <connections>
                         <outlet property="elapsed" destination="A6b-7S-pri" id="EQ1-rV-4WC"/>
+                        <outlet property="myPickerView" destination="2nP-xO-ieU" id="tOS-BL-hEE"/>
+                        <outlet property="pickerOptions" destination="M6L-6h-H95" id="rNo-hu-Oo5"/>
                         <outlet property="problemLabel" destination="5mk-fV-32m" id="mf5-jd-eLm"/>
                         <outlet property="problemSlider" destination="8lJ-3x-AQM" id="F5p-Bc-cMR"/>
                     </connections>
