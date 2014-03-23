@@ -44,7 +44,7 @@ bool ascending = false;
 bool descending = false;
 bool equal = false;
 
-bool shouldLoadPickers = false;
+static bool shouldLoadPickers = false;
 bool updateLabels = false;
 
 int *data;
@@ -69,34 +69,29 @@ UIPickerView *pickerOptions;
 
 @synthesize userAlg;
 @synthesize userData;
+NSInteger optionType;
 
 - (IBAction)goBack:(id)sender {
     NSInteger algTypePicker;
-    NSInteger optionType;
-    
     algTypePicker = [myPickerView selectedRowInComponent:0];
     optionType = [pickerOptions selectedRowInComponent:0];
     
     NSLog(@"alg: %i", algTypePicker);
     NSLog(@"opt: %i", optionType);
     
-    [userAlg setText:@"yay"];
-    [userData setText:@"yippee"];
-    
 }
 - (IBAction)updateLabels:(id)sender {
     updateLabels= !updateLabels;
 }
+- (IBAction)exitPickers:(id)sender {
+    shouldLoadPickers = false;
+}
 
 
 - (IBAction)loadPickersiPhone:(id)sender {
-    shouldLoadPickers = !shouldLoadPickers;
-}
 
-- (IBAction)setLabels:(id)sender {
-    NSLog(@"just set label setLabels");
-    [userAlg setText:@"yay"];
-    [userData setText:@"yippee"];
+        shouldLoadPickers = !shouldLoadPickers;
+
 }
 
 
@@ -124,17 +119,41 @@ UIPickerView *pickerOptions;
     self.algColumn  = [[NSArray alloc]         initWithObjects:@"QS Hoare", @"QS Hoare Rand", @"QS Lomuto", @"QS Lomuto Rand",@"Insertion Sort",@"Selection Sort",@"Rank Sort",@"Heap Sort", @"Merge Sort", @"Bubble Sort", nil];
     self.optionsColumn = [[NSArray alloc] initWithObjects:@"Random", @"Ascending", @"Descending", @"Values Equal", nil];
     
-    NSLog(@"Just before updateLabels in ViewDidLoad");
+    //NSLog(@"Just before updateLabels in ViewDidLoad");
     
-    if(updateLabels){//this doesn't get called everytime we go back :(
-        
-        NSLog(@"just set label");
-        [userAlg setText:@"yay"];
-        [userData setText:@"yippee"];
-        
-    }
+//    if(updateLabels){//this doesn't get called everytime we go back :(
+//        
+//        NSLog(@"just set label");
+//        [userAlg setText:@"yay"];
+//        [userData setText:@"yippee"];
+//        
+//    }
     
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){//only do this certain times....
+        NSArray *viewControllers = self.navigationController.viewControllers;
+        //UIViewController *rootViewController = [viewControllers objectAtIndex:viewControllers.count - 2];
+        
+        //if (!([rootViewController isMemberOfClass:[InfoViewController ExperimentViewController]])) {
+//[[UIViewController rootViewController] isMemberOfClass:[NSData class]];
+        //rootViewController isMemberOfClass:[[UIViewController InfoViewController];
+        //}
+        
+        //Class rootClass = [self.rootViewController class];
+        UINavigationController *nav = (UINavigationController*) self.view.window.rootViewController;
+        UIViewController *root = [nav.viewControllers objectAtIndex:0];
+        
+        if(![root isKindOfClass:[ExperimentViewController class]]){
+            NSLog(@"KEITH");
+            
+        }
+        
+//        if (rootClass == [UINavigationController class]) {
+//            
+//        } else if (rootClass == [UITabBarController class]) {
+//            
+//        }
+        
+        
         if(shouldLoadPickers){//only load if in second modal
             NSLog(@"in if view did load iPhoneScrollVC");
         
@@ -621,7 +640,7 @@ int lomuto_partition(int *arr, int start, int end, int pi)
 {
     int i;
     NSInteger algTypePicker;
-    NSInteger optionType;
+    //NSInteger optionType;
     
     algTypePicker = [myPickerView selectedRowInComponent:0];
     optionType = [pickerOptions selectedRowInComponent:0];
@@ -656,31 +675,40 @@ int lomuto_partition(int *arr, int start, int end, int pi)
     
     switch(algTypePicker){
         case 0:
+            NSLog(@"1");
             quicksort_hoare_norand(data, 0, problemSize-1);
             break;
         case 1:
             quicksort_hoare_rand(data, 0, problemSize-1);
+            NSLog(@"2");
             break;
         case 2:
             quicksort_lomuto_norand(data, 0, problemSize-1);
+            NSLog(@"3");
             break;
         case 3:
             quicksort_lomuto_rand(data, 0, problemSize-1);
+            NSLog(@"4");
             break;
         case 4:
             [self insertionSort];
+            NSLog(@"5");
             break;
         case 5:
             [self selectionSort];
+            NSLog(@"6");
             break;
         case 6:
             [self rankSort];
+            NSLog(@"7");
             break;
         case 7:
             [self heapSort];
+            NSLog(@"8");
             break;
         case 8:
             mergeSort(data, problemSize);
+            NSLog(@"9");
             break;
         case 9:
             [self bubbleSort];
@@ -700,6 +728,7 @@ int lomuto_partition(int *arr, int start, int end, int pi)
 
 -(IBAction)runAlgorithm:(id)sender
 {
+
     if (isRunning)
     {
         if (LDBG) NSLog(@"Algorithm already running.  Killing current run");
@@ -712,8 +741,12 @@ int lomuto_partition(int *arr, int start, int end, int pi)
     if (LDBG) NSLog(@"Problem size %d", problemSize);
     shouldRun = TRUE;
 
-    algType = [sender tag];
+    if(UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPhone){//for iPAd, get tag. other wise its been set
+        algType = [sender tag];
+    }
     if (LDBG) NSLog(@"Running algorithm %d", algType);
+    
+    
     
     [self createShield];
     
@@ -740,6 +773,30 @@ int lomuto_partition(int *arr, int start, int end, int pi)
 }
 
 - (IBAction)done:(UIStoryboardSegue *)segue {
+    //set which to run on
+    
+    NSInteger algTypePicker;
+    NSInteger option;
+    
+    algTypePicker = [myPickerView selectedRowInComponent:0];
+    option = [pickerOptions selectedRowInComponent:0];
+    
+    NSLog(@"alg: %i", algTypePicker);
+    NSLog(@"opt: %i", option);
+    
+    NSString * s1= _algColumn[algTypePicker];
+    NSString * s2= _optionsColumn[option];
+    
+    [userAlg setText:s1];
+    [userData setText:s2];
+    
+    algType = algTypePicker;
+    optionType = option;
+    
+    //shouldLoadPickers = false;
+    
+    
+    NSLog(@"done");
     if (LDBG) NSLog(@"Popping back to this view controller! %@ %p", segue.identifier, segue.destinationViewController);
     if (LDBG) NSLog(@"Back at main.  Destroy any peripheral or controller.");
     
