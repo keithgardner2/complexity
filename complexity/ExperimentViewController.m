@@ -44,7 +44,7 @@ bool ascending = false;
 bool descending = false;
 bool equal = false;
 
-static bool shouldLoadPickers = false;
+bool shouldSetTime = NO;
 bool updateLabels = false;
 
 int *data;
@@ -52,9 +52,6 @@ int *temp;
 BOOL shouldRun;
 BOOL isRunning;
 int choice, next, original, originalSpot;//used in selection sort
-
-//UIPickerView *myPickerView;
-//UIPickerView *pickerOptions;
 
 @interface ExperimentViewController ()
 
@@ -74,26 +71,17 @@ int choice, next, original, originalSpot;//used in selection sort
 NSInteger optionType;
 
 - (IBAction)goBack:(id)sender {
-    NSInteger algTypePicker;
-    algTypePicker = [myPickerView selectedRowInComponent:0];
-    optionType = [pickerOptions selectedRowInComponent:0];
-    
-    NSLog(@"alg: %i", algTypePicker);
-    NSLog(@"opt: %i", optionType);
+//    NSInteger algTypePicker;
+//    algTypePicker = [myPickerView selectedRowInComponent:0];
+//    optionType = [pickerOptions selectedRowInComponent:0];
+//    
+//    NSLog(@"alg: %i", algTypePicker);
+//    NSLog(@"opt: %i", optionType);
     
 }
+
 - (IBAction)updateLabels:(id)sender {
     updateLabels= !updateLabels;
-}
-- (IBAction)exitPickers:(id)sender {
-    shouldLoadPickers = false;
-}
-
-
-- (IBAction)loadPickersiPhone:(id)sender {
-
-        shouldLoadPickers = !shouldLoadPickers;
-
 }
 
 
@@ -127,35 +115,6 @@ NSInteger optionType;
     [myPickerView setDataSource:self];
     [pickerOptions setDataSource:self];
     
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){//only do this certain times....
-        
-        
-        if(shouldLoadPickers){//only load if in second modal
-            NSLog(@"in if view did load iPhoneScrollVC");
-        
-            CGSize iOSDeviceScreenSize = [[UIScreen mainScreen] bounds].size;
-            if(iOSDeviceScreenSize.height  == 568){
-                NSLog(@"Loading 4 inch storyboard");
-                //myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(50, 50, 150, 162.0)];
-            
-                //pickerOptions= [[UIPickerView alloc] initWithFrame:CGRectMake(200, 50, 150, 162.0)];
-            }
-            if(iOSDeviceScreenSize.height  == 480){
-            
-                NSLog(@"Loading 3.5 inch");
-                //myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(19, 84, 215, 162.0)];
-            
-                //pickerOptions= [[UIPickerView alloc] initWithFrame:CGRectMake(247, 84, 215, 162.0)];
-            }
-        }
-    }
-    else{
-        //UIPickerView *myPickerView;
-        //UIPickerView *pickerOptions;
-        //myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(715, 130, 230, 150)];
-        //pickerOptions= [[UIPickerView alloc] initWithFrame:CGRectMake(715, 330, 230, 150)];
-    }
-    
     myPickerView.tag = 0;
     pickerOptions.tag = 1;
     
@@ -164,20 +123,6 @@ NSInteger optionType;
     
     myPickerView.showsSelectionIndicator = YES;
     pickerOptions.showsSelectionIndicator = YES;
-    
-    if(UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPhone){//only do this certain times....
-        //myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(715, 130, 230, 150)];
-        //pickerOptions= [[UIPickerView alloc] initWithFrame:CGRectMake(715, 330, 230, 150)];
-    
-//    [self.view addSubview:myPickerView];
-//    [self.view addSubview:pickerOptions];
-//    
-//    [self.view bringSubviewToFront:myPickerView];
-//    [self.view bringSubviewToFront:pickerOptions];
-//
-//    [myPickerView setBackgroundColor:[UIColor whiteColor]];
-//    [pickerOptions setBackgroundColor:[UIColor whiteColor]];
-    }
 }
 
 
@@ -206,6 +151,7 @@ NSInteger optionType;
 // tell the picker the title for a given component
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     NSLog(@"setting rows name");
+    shouldSetTime = YES;
     if(pickerView.tag ==0){
         return _algColumn[row];
     }
@@ -294,6 +240,10 @@ static int getUptimeInMilliseconds()
     
     const int64_t kOneMillion = 1000 * 1000;
     int delta =(int)(((now - startTime) * s_timebase_info.numer)/ (kOneMillion * s_timebase_info.denom));
+    
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone && !shouldSetTime){//for iPhone, only set time once user has selected their options.
+        return;
+    }
 
     [elapsed setText:[NSString stringWithFormat:@"%5.3f seconds", (float) delta/1000.0]];
 }
@@ -727,6 +677,7 @@ int lomuto_partition(int *arr, int start, int end, int pi)
     if(UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPhone){//for iPAd, get tag. other wise its been set
         algType = [sender tag];
     }
+    
     if (1) NSLog(@"Running algorithm %d option %d size %d", algType, optionType, problemSize);
     
     [self createShield];
@@ -784,14 +735,11 @@ static ExperimentViewController *expVCPicker = nil;
        algType = algTypePicker;
        optionType = option;
    }
-    //shouldLoadPickers = false;
-    
     
     NSLog(@"done");
     if (LDBG) NSLog(@"Popping back to this view controller! %@ %p", segue.identifier, segue.destinationViewController);
     if (LDBG) NSLog(@"Back at main.  Destroy any peripheral or controller.");
     
-    // reset UI elements etc here
 }
 
 -(void)createShield{
@@ -805,10 +753,10 @@ static ExperimentViewController *expVCPicker = nil;
 
         if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){//iPhone View
             if(iOSDeviceScreenSize.height  == 568){
-                nib = [UINib nibWithNibName:@"EVC_iPhone4inch" bundle:nil];//3.5 inch
+                nib = [UINib nibWithNibName:@"EVC_iPhone4inch" bundle:nil];
             }
             else{
-                nib = [UINib nibWithNibName:@"EVC_iPhone" bundle:nil];//3.5 inch
+                nib = [UINib nibWithNibName:@"EVC_iPhone" bundle:nil];
             }
         }
         else{//iPad View
