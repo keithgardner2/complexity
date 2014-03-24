@@ -139,8 +139,8 @@ UIPickerView *pickerOptions;
     algTypePicker = [myPickerView selectedRowInComponent:0];
     optionType = [pickerOptions selectedRowInComponent:0];
     
-    NSLog(@"alg: %i", algTypePicker);
-    NSLog(@"opt: %i", optionType);
+    NSLog(@"alg: %li", (long)algTypePicker);
+    NSLog(@"opt: %li", (long)optionType);
 
 }
 

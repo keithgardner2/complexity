@@ -150,7 +150,7 @@ NSInteger optionType;
 
 // tell the picker the title for a given component
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    NSLog(@"setting rows name");
+    if (LDBG) NSLog(@"setting rows name");
     shouldSetTime = YES;
     if(pickerView.tag ==0){
         return _algColumn[row];
@@ -320,7 +320,7 @@ static int getUptimeInMilliseconds()
         original = choice;
         next = i + 1;
         
-        for(next; next < problemSize; next++){
+        for(next = i + 1; next < problemSize; next++){
             if (!shouldRun)
             {
                 problemSize = 1;
@@ -575,7 +575,7 @@ int lomuto_partition(int *arr, int start, int end, int pi)
     int i;
 
     if(UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPhone){
-        algType = [myPickerView selectedRowInComponent:0];
+        algType = (int) [myPickerView selectedRowInComponent:0];
         optionType = [pickerOptions selectedRowInComponent:0];
     }
     data = (int *)malloc(sizeof(int) * problemSize);//This sets data to a bunch of random numbers
@@ -675,10 +675,10 @@ int lomuto_partition(int *arr, int start, int end, int pi)
     shouldRun = TRUE;
 
     if(UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPhone){//for iPAd, get tag. other wise its been set
-        algType = [sender tag];
+        algType = (int) [sender tag];
     }
     
-    if (1) NSLog(@"Running algorithm %d option %d size %d", algType, optionType, problemSize);
+    if (LDBG) NSLog(@"Running algorithm %d option %d size %d", algType, (int) optionType, problemSize);
     
     [self createShield];
     
@@ -701,7 +701,7 @@ static ExperimentViewController *expVCPicker = nil;
     
     if ([segue.identifier isEqualToString:@"AlgPicker"])
     {
-        NSLog(@"Segue to alg picker");
+        if (LDBG) NSLog(@"Segue to alg picker");
         expVCPicker = [segue destinationViewController];
     }
    
@@ -714,7 +714,7 @@ static ExperimentViewController *expVCPicker = nil;
 
 - (IBAction)done:(UIStoryboardSegue *)segue {
     //set which to run on
-    NSLog(@"Done called.");
+    if (LDBG) NSLog(@"Done called.");
     NSInteger algTypePicker;
     NSInteger option;
     
@@ -723,8 +723,8 @@ static ExperimentViewController *expVCPicker = nil;
        algTypePicker = [[expVCPicker myPickerView] selectedRowInComponent:0];
        option = [[expVCPicker pickerOptions] selectedRowInComponent:0];
     
-       NSLog(@"alg: %i", algTypePicker);
-       NSLog(@"opt: %i", option);
+       if (LDBG) NSLog(@"alg: %i", (int) algTypePicker);
+       if (LDBG) NSLog(@"opt: %i", (int) option);
     
        NSString * s1= _algColumn[algTypePicker];
        NSString * s2= _optionsColumn[option];
@@ -732,11 +732,11 @@ static ExperimentViewController *expVCPicker = nil;
        [userAlg setText:s1];
        [userData setText:s2];
     
-       algType = algTypePicker;
+       algType = (int) algTypePicker;
        optionType = option;
    }
     
-    NSLog(@"done");
+    if (LDBG) NSLog(@"done");
     if (LDBG) NSLog(@"Popping back to this view controller! %@ %p", segue.identifier, segue.destinationViewController);
     if (LDBG) NSLog(@"Back at main.  Destroy any peripheral or controller.");
     
@@ -775,7 +775,7 @@ static ExperimentViewController *expVCPicker = nil;
 }
 
 -(IBAction)pickHTML:(id)sender{
-    html = [sender tag];
+    html = (int) [sender tag];
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
     if (standardUserDefaults) {
         [standardUserDefaults setObject:[NSNumber numberWithInt:html] forKey:@"age"];
