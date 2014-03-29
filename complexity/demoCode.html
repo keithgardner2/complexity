@@ -26,10 +26,6 @@ Best Case: O(n log n)
             int pv = arr[pi];
         
             while(1){
-                if (global_kill_flag){
-                    exit(1);
-                }
-        
                 while(arr[++i] < pv);
                 while(arr[--j] > pv);
                     if (i < j){
@@ -64,10 +60,6 @@ Best Case: O(n log n)
             int pv = arr[pi];
         
             while(1){
-                if (global_kill_flag){
-                    exit(1);
-                }
-        
                 while(arr[++i] < pv);
                 while(arr[--j] > pv);
                     if (i < j){
@@ -121,10 +113,6 @@ Best Case: O(n log n)<br>
             SWAP(arr, pi, end);
         
             for (int i = start; i < end; ++i){
-                if (global_kill_flag){
-                    exit(1);
-                    }
-            
                 if (arr[i] <= pv){
                     SWAP(arr, si, i);
                     ++si;
@@ -167,10 +155,6 @@ Best Case: O(n log n)<br>
             SWAP(arr, pi, end);
         
             for (int i = start; i < end; ++i){
-                if (global_kill_flag){
-                    exit(1);
-                    }
-            
                 if (arr[i] <= pv){
                     SWAP(arr, si, i);
                     ++si;
@@ -344,11 +328,6 @@ Best case performance: O(n^2)
                 original = choice;
                 next = i + 1;
                 for(next; next < problemSize; next++){
-                    if (!shouldRun){
-                        problemSize = 1;
-                        continue;
-                    }
-            
                     if(data[next] < choice){
                         choice = data[next];
                         originalSpot = next;

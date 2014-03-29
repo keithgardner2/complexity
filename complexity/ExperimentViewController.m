@@ -164,10 +164,12 @@ NSInteger optionType;
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
     int sectionWidth;
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){
-        if(pickerView.tag == 0)
-            sectionWidth = 150;
-        else
+        if(pickerView.tag == 0){
             sectionWidth = 200;
+        }
+        else{
+            sectionWidth = 200;
+        }
         }
     else{
         if(pickerView.tag == 0)
@@ -538,8 +540,7 @@ int hoare_partition(int *arr, int start, int end, int pi)
     }
 }
 
-int lomuto_partition(int *arr, int start, int end, int pi)
-{
+int lomuto_partition(int *arr, int start, int end, int pi){
     int pv = arr[pi];
     int si = start;
     
