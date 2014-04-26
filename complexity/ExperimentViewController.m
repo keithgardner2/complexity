@@ -663,6 +663,7 @@ int lomuto_partition(int *arr, int start, int end, int pi){
 -(IBAction)runAlgorithm:(id)sender
 {
 
+
     if (isRunning)
     {
         if (LDBG) NSLog(@"Algorithm already running.  Killing current run");
