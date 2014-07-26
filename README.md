@@ -6,6 +6,5 @@ This project was started by Professor Madden at Binghamton Univeristy, State Uni
 I hope to expand this app to include data structures, which go hand in hand with algorithms and would make the app an even better tool for CS students.
 
 
-(Winter research program for undergraduates)
 
 https://itunes.apple.com/us/app/computational-complexity/id788314470?mt=8
